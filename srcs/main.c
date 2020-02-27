@@ -6,7 +6,7 @@
 /*   By: spentti <spentti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 19:07:39 by spentti           #+#    #+#             */
-/*   Updated: 2020/02/27 16:30:53 by spentti          ###   ########.fr       */
+/*   Updated: 2020/02/27 18:33:54 by spentti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@ void	read_token(t_piece *token, char *line, int offset)
 		get_next_line(0, &line);
 		ft_strdel(&line);
 	}
-	token->data = ft
+	token->data = ft_memalloc(token->height * sizeof(char *));
+	i = 0;
+	while 
 }
 
 void	loop_game(t_info *info)
