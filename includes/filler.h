@@ -6,7 +6,7 @@
 /*   By: spentti <spentti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 18:35:11 by spentti           #+#    #+#             */
-/*   Updated: 2020/02/24 14:40:23 by spentti          ###   ########.fr       */
+/*   Updated: 2020/02/27 16:30:16 by spentti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,25 @@
 #include "../libft/ft_printf/includes/ft_printf.h"
 #include "../libft/libft/includes/libft.h"
 
-typedef struct	s_map
+typedef struct	s_piece
 {
-	char		**map;
-	int			player;
-	int			map_size_x;
-	int			map_size_y;
+	char		**data;
+	int			width;
+	int			height;
+	int			size;
+	
+}				t_piece;
+
+typedef struct	s_info
+{
+	char		player;
+	char		enemy;
 	int			enemy_pos_x;
 	int			enemy_pos_y;
 	int			my_pos_x;
 	int			my_pos_y;
-}				t_map;
-
-typedef struct	s_piece
-{
-	char		**piece;
-	int			size_x;
-	int			size_y;
-}				t_piece;
+	t_piece		*board;
+	t_piece		*piece;
+}				t_info;
 
 #endif
