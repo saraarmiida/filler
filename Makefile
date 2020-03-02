@@ -6,7 +6,7 @@
 #    By: spentti <spentti@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/10 14:03:19 by spentti           #+#    #+#              #
-#    Updated: 2020/02/24 14:55:21 by spentti          ###   ########.fr        #
+#    Updated: 2020/03/02 15:50:50 by spentti          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,8 @@ FLAGS = -Wall -Wextra -Werror
 INC = includes/filler.h
 
 SRC = srcs/main.c \
+	srcs/heat_map.c \
+	srcs/place.c
 
 all: $(NAME)
 
