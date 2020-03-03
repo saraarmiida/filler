@@ -6,7 +6,7 @@
 #    By: spentti <spentti@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/10 14:03:19 by spentti           #+#    #+#              #
-#    Updated: 2020/03/02 15:50:50 by spentti          ###   ########.fr        #
+#    Updated: 2020/03/03 16:48:14 by spentti          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,9 @@ INC = includes/filler.h
 
 SRC = srcs/main.c \
 	srcs/heat_map.c \
-	srcs/place.c
+	srcs/place.c \
+	srcs/read.c \
+	srcs/utils.c
 
 all: $(NAME)
 

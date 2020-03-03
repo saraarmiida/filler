@@ -6,25 +6,27 @@
 /*   By: spentti <spentti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 13:20:28 by spentti           #+#    #+#             */
-/*   Updated: 2020/03/02 15:58:55 by spentti          ###   ########.fr       */
+/*   Updated: 2020/03/03 18:06:23 by spentti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/filler.h"
 
-static void	locate_players(int *y, t_info *i)
+static void	locate_players(int *y, t_info *i, int **map)
 {
 	int x;
 
 	x = 0;
-	while (x < i->board->width)
+	while (x < i->board->w)
 	{
 		if (i->board->data[*y][x] == '.')
-			i->hmap[*y][x] = 0;
-		else if (i->board->data[*y][x] == i->player.id || i->board->data[*y][x] == i->player.id + 32)
-			i->hmap[*y][x] = -2;
-		else if (i->board->data[*y][x] == i->enemy.id || i->board->data[*y][x] == i->enemy.id + 32)
-			i->hmap[*y][x] = -1;
+			map[*y][x] = 0;
+		else if (i->board->data[*y][x] == i->player.id || \
+		i->board->data[*y][x] == i->player.id + 32)
+			map[*y][x] = -2;
+		else if (i->board->data[*y][x] == i->enemy.id || \
+		i->board->data[*y][x] == i->enemy.id + 32)
+			map[*y][x] = -1;
 		x++;
 	}
 }
@@ -32,38 +34,20 @@ static void	locate_players(int *y, t_info *i)
 static int	create_heat_map(t_info *i)
 {
 	int	y;
+	int	**map;
 
 	y = 0;
-	if (!(i->hmap = (int **)malloc(sizeof(int *) * i->board->height)))
+	ft_printf("%d\n", i->board->h);
+	if (!(map = (int **)malloc(sizeof(int *) * i->board->h)))
 		return (1);
-	while (y < i->board->height)
+	while (y < i->board->h)
 	{
-		if (!(i->hmap[y] = (int *)malloc(sizeof(int) * i->board->width)))
+		if (!(map[y] = (int *)malloc(sizeof(int) * i->board->w)))
 			return (1);
-		locate_players(&y, i);
+		locate_players(&y, i, map);
 		y++;
 	}
-	return (0);
-}
-
-int			is_around(t_info *i, int x, int y, int a)
-{
-	if (x + 1 < i->board->width && i->hmap[y][x + 1] == a)
-		return (1);
-	if (x + 1 < i->board->width && y + 1 < i->board->height && i->hmap[y + 1][x + 1] == a)
-		return (1);
-	if (y + 1 < i->board->height && i->hmap[y + 1][x] == a)
-		return (1);
-	if (x - 1 >= 0 && y + 1 < i->board->height && i->hmap[y + 1][x - 1] == a)
-		return (1);
-	if (x - 1 >= 0 && i->hmap[y][x - 1] == a)
-		return (1);
-	if (x - 1 >= 0 && y - 1 >= 0 && i->hmap[y - 1][x - 1] == a)
-		return (1);
-	if (y - 1 >= 0 && i->hmap[y - 1][x] == a)
-		return (1);
-	if (x + 1 < i->board->width && y - 1 >= 0 && i->hmap[y - 1][x + 1] == a)
-		return (1);
+	i->hmap = map;
 	return (0);
 }
 
@@ -73,14 +57,14 @@ static void	init_heat_map(t_info *i)
 	int y;
 
 	y = 0;
-	while (y < i->board->height)
+	while (y < i->board->h)
 	{
 		x = 0;
-		while (x < i->board->width)
+		while (x < i->board->w)
 		{
 			if (i->hmap[y][x] == 0)
 			{
-				if(is_around(i, x, y, -1))
+				if (is_around(i, x, y, -1))
 					i->hmap[y][x] += 1;
 			}
 			x++;
@@ -96,13 +80,13 @@ static void	count_heat_map(t_info *i)
 	int a;
 
 	a = 1;
-	while (a < i->board->width || a < i->board->height)
+	while (a < i->board->w || a < i->board->h)
 	{
 		y = 0;
-		while (y < i->board->height)
+		while (y < i->board->h)
 		{
 			x = 0;
-			while (x < i->board->width)
+			while (x < i->board->w)
 			{
 				if (i->hmap[y][x] == 0)
 					if (is_around(i, x, y, a))

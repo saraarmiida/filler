@@ -6,7 +6,7 @@
 /*   By: spentti <spentti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 18:35:11 by spentti           #+#    #+#             */
-/*   Updated: 2020/03/02 15:50:30 by spentti          ###   ########.fr       */
+/*   Updated: 2020/03/03 17:03:21 by spentti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ typedef struct	s_player
 typedef struct	s_piece
 {
 	char		**data;
-	int			width;
-	int			height;
+	int			w;
+	int			h;
 	int			size;
 	
 }				t_piece;
@@ -44,11 +44,18 @@ typedef struct	s_info
 	t_player	enemy;
 	t_piece		*board;
 	t_piece		*piece;
+	t_point		piece_off;
+	t_point		start;
+	t_point		res;
 	int			**hmap;
 	int			inited;
+	int			fd;
 }				t_info;
 
-int		heat_map(t_info *i);
-void	place(t_info *i);
+int				heat_map(t_info *i);
+void			place(t_info *i);
+int				is_around(t_info *i, int x, int y, int a);
+int				read_map(t_info *info);
+int				read_piece(t_info *info);
 
 #endif
