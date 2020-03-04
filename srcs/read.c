@@ -6,7 +6,7 @@
 /*   By: spentti <spentti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 14:43:00 by spentti           #+#    #+#             */
-/*   Updated: 2020/03/03 17:56:54 by spentti          ###   ########.fr       */
+/*   Updated: 2020/03/04 15:39:47 by spentti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,14 @@ void	free_token(t_piece *token, int offset)
 	ft_memdel((void **)&token->data);
 }
 
-void	read_token(t_piece *token, char *line, int offset, int fd)
+t_piece	*read_tokenp(char *line, int offset, int fd)
 {
 	int		i;
 	char	**arr;
+	t_piece	*token;
 
-	// free_token(token, offset);
-	token = (t_piece *)malloc(sizeof(t_piece));
+	if (!(token = (t_piece *)malloc(sizeof(t_piece))))
+		return (NULL);
 	arr = ft_strsplit(line, ' ');
 	token->h = ft_atoi(arr[1]);
 	token->w = ft_atoi(arr[2]);
@@ -48,7 +49,8 @@ void	read_token(t_piece *token, char *line, int offset, int fd)
 		get_next_line(fd, &line);
 		ft_strdel(&line);
 	}
-	token->data = ft_memalloc(token->h * sizeof(char *));
+	if (!(token->data = ft_memalloc(token->h * sizeof(char *))))
+		return (NULL);
 	i = 0;
 	while (i < token->h)
 	{
@@ -56,18 +58,47 @@ void	read_token(t_piece *token, char *line, int offset, int fd)
 		token->data[i] = line + offset;
 		i++;
 	}
+	return (token);
 }
 
-int		read_map(t_info *i)
+t_piece	*read_token(char *line, int offset, int fd)
 {
-	char *line;
+	int		i;
+	char	**arr;
+	t_piece	*token;
 
-	line = NULL;
-	if (get_next_line(i->fd, &line) < 0)
+	if (!(token = (t_piece *)malloc(sizeof(t_piece))))
+		return (NULL);
+	arr = ft_strsplit(line, ' ');
+	token->h = ft_atoi(arr[1]);
+	token->w = ft_atoi(arr[2]);
+	token->size = token->h * token->w;
+	free(arr[0]);
+	free(arr[1]);
+	free(arr[2]);
+	free(arr);
+	ft_strdel(&line);
+	if (offset)
+	{
+		get_next_line(fd, &line);
+		ft_strdel(&line);
+	}
+	if (!(token->data = (char **)malloc(sizeof(char *) * token->h)))
+		return (NULL);
+	i = 0;
+	while (i < token->h)
+	{
+		get_next_line(fd, &line);
+		token->data[i] = line + offset;
+		i++;
+	}
+	return (token);
+}
+
+int		read_map(t_info *i, char *line)
+{
+	if (!(i->board = read_token(line, 4, i->fd)))
 		return (1);
-	if (ft_strncmp(line, "Plateau", 7))
-		return (1);
-	read_token(i->board, line, 4, i->fd);
 	return (0);
 }
 
@@ -89,20 +120,16 @@ void	find_offset(t_info *i)
 				i->piece_off.y = (y < i->piece_off.y) ? y : i->piece_off.y;
 				i->piece_off.x = (x < i->piece_off.x) ? x : i->piece_off.x;
 			}
+			x++;
 		}
+		y++;
 	}
 }
 
-int		read_piece(t_info *i)
+int		read_piece(t_info *i, char *line)
 {
-	char *line;
-
-	line = NULL;
-	if (get_next_line(i->fd, &line) < 0)
+	if (!(i->piece = read_tokenp(line, 0, i->fd)))
 		return (1);
-	if (ft_strncmp(line, "Piece", 6))
-		return (1);
-	read_token(i->piece, line, 0, i->fd);
 	find_offset(i);
 	return (0);
 }

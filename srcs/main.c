@@ -6,7 +6,7 @@
 /*   By: spentti <spentti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 19:07:39 by spentti           #+#    #+#             */
-/*   Updated: 2020/03/03 17:57:47 by spentti          ###   ########.fr       */
+/*   Updated: 2020/03/04 16:02:50 by spentti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,16 @@ static void	print_result(t_point p)
 	ft_printf("%d %d\n", p.x, p.y);
 }
 
-static int	loop_game(t_info *info)
+void		print_map(t_piece *map)
 {
-	while (1)
+	int y;
+
+	y = 0;
+	while (y < map->h)
 	{
-		if (read_map(info))
-			return (1);
-		heat_map(info);
-		if (read_piece(info))
-			return (1);
-		place(info);
-		print_result(info->res);
+		ft_printf("%s\n", map->data[y]);
+		y++;
 	}
-	return (0);
 }
 
 static int	get_player(t_info *i)
@@ -51,18 +48,92 @@ static int	get_player(t_info *i)
 	return (0);
 }
 
-int			main(int argc, char **argv)
+void	read_to_file(void)
+{
+	int		fd;
+	char	*line;
+
+	line = NULL;
+	fd = open("debugfile", O_RDWR);
+	while (get_next_line(0, &line) >= 0)
+	{
+		ft_putendl_fd(line, fd);
+		ft_strdel(&line);
+	}
+}
+
+int			main(void)
 {
 	t_info	*info;
+	char	*line;
 
-	if (argc != 2)
-		return (0);
 	if (!(info = ft_memalloc(sizeof(t_info))))
 		return (1);
-	info->fd = open(argv[1], O_RDONLY);
+	info->fd = 0;
+	line = NULL;
 	if (get_player(info))
 		return (1);
-	if (loop_game(info))
-		return (0);
+	while (get_next_line(info->fd, &line) > 0)
+	{
+		if (!*line)
+		{
+			ft_strdel(&line);
+			continue ;
+		}
+		if (ft_strncmp(line, "Plateau", 7) == 0)
+		{
+			if (read_map(info, line))
+				return (1);
+			heat_map(info);
+		}
+		else if (ft_strncmp(line, "Piece", 5) == 0)
+		{
+			if (read_piece(info, line))
+				return (1);
+			place(info);
+			print_result(info->res);
+		}
+		else
+			ft_strdel(&line);
+	}
 	return (0);
 }
+
+// int			main(int argc, char **argv)
+// {
+// 	t_info	*info;
+// 	char	*line;
+
+// 	if (argc != 2)
+// 		return (0);
+// 	if (!(info = ft_memalloc(sizeof(t_info))))
+// 		return (1);
+// 	info->fd = open(argv[1], O_RDONLY);
+// 	line = NULL;
+// 	if (get_player(info))
+// 		return (1);
+// 	while (get_next_line(info->fd, &line) > 0)
+// 	{
+// 		if (!*line)
+// 		{
+// 			ft_strdel(&line);
+// 			continue ;
+// 		}
+// 		if (ft_strncmp(line, "Plateau", 7) == 0)
+// 		{
+// 			if (read_map(info, line))
+// 				return (1);
+// 			heat_map(info);
+// 		}
+// 		else if (ft_strncmp(line, "Piece", 5) == 0)
+// 		{
+// 			if (read_piece(info, line))
+// 				return (1);
+// 			place(info);
+// 			print_result(info->res);
+// 		}
+// 		else
+// 			ft_strdel(&line);
+// 	}
+// 	return (0);
+// }

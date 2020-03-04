@@ -6,7 +6,7 @@
 /*   By: spentti <spentti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 13:20:28 by spentti           #+#    #+#             */
-/*   Updated: 2020/03/03 18:06:23 by spentti          ###   ########.fr       */
+/*   Updated: 2020/03/04 12:55:17 by spentti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ static int	create_heat_map(t_info *i)
 	int	**map;
 
 	y = 0;
-	ft_printf("%d\n", i->board->h);
 	if (!(map = (int **)malloc(sizeof(int *) * i->board->h)))
 		return (1);
 	while (y < i->board->h)
