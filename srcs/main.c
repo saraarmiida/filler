@@ -6,28 +6,17 @@
 /*   By: spentti <spentti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 19:07:39 by spentti           #+#    #+#             */
-/*   Updated: 2020/03/04 16:02:50 by spentti          ###   ########.fr       */
+/*   Updated: 2020/03/05 17:37:34 by spentti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/filler.h"
 #include <fcntl.h>
+#include <stdarg.h>
 
 static void	print_result(t_point p)
 {
 	ft_printf("%d %d\n", p.x, p.y);
-}
-
-void		print_map(t_piece *map)
-{
-	int y;
-
-	y = 0;
-	while (y < map->h)
-	{
-		ft_printf("%s\n", map->data[y]);
-		y++;
-	}
 }
 
 static int	get_player(t_info *i)
@@ -41,57 +30,30 @@ static int	get_player(t_info *i)
 	{
 		i->player.id = (line[10] == '1' ? 'O' : 'X');
 		i->enemy.id = (line[10] == '2' ? 'O' : 'X');
-		ft_strdel(&line);
 	}
 	else
 		return (1);
+	ft_strdel(&line);
 	return (0);
 }
 
-void	read_to_file(void)
+int			read_input(t_info *i)
 {
-	int		fd;
 	char	*line;
 
-	line = NULL;
-	fd = open("debugfile", O_RDWR);
-	while (get_next_line(0, &line) >= 0)
+	line = NULL;	
+	while (get_next_line(i->fd, &line) > 0)
 	{
-		ft_putendl_fd(line, fd);
-		ft_strdel(&line);
-	}
-}
-
-int			main(void)
-{
-	t_info	*info;
-	char	*line;
-
-	if (!(info = ft_memalloc(sizeof(t_info))))
-		return (1);
-	info->fd = 0;
-	line = NULL;
-	if (get_player(info))
-		return (1);
-	while (get_next_line(info->fd, &line) > 0)
-	{
-		if (!*line)
-		{
-			ft_strdel(&line);
-			continue ;
-		}
 		if (ft_strncmp(line, "Plateau", 7) == 0)
 		{
-			if (read_map(info, line))
-				return (1);
-			heat_map(info);
+			if (read_map(i, line))
+				return (0);
 		}
 		else if (ft_strncmp(line, "Piece", 5) == 0)
 		{
-			if (read_piece(info, line))
-				return (1);
-			place(info);
-			print_result(info->res);
+			if (read_piece(i, line))
+				return (0);
+			return (0);
 		}
 		else
 			ft_strdel(&line);
@@ -99,41 +61,23 @@ int			main(void)
 	return (0);
 }
 
-// int			main(int argc, char **argv)
-// {
-// 	t_info	*info;
-// 	char	*line;
+int			main(void)
+{
+	t_info	*info;
 
-// 	if (argc != 2)
-// 		return (0);
-// 	if (!(info = ft_memalloc(sizeof(t_info))))
-// 		return (1);
-// 	info->fd = open(argv[1], O_RDONLY);
-// 	line = NULL;
-// 	if (get_player(info))
-// 		return (1);
-// 	while (get_next_line(info->fd, &line) > 0)
-// 	{
-// 		if (!*line)
-// 		{
-// 			ft_strdel(&line);
-// 			continue ;
-// 		}
-// 		if (ft_strncmp(line, "Plateau", 7) == 0)
-// 		{
-// 			if (read_map(info, line))
-// 				return (1);
-// 			heat_map(info);
-// 		}
-// 		else if (ft_strncmp(line, "Piece", 5) == 0)
-// 		{
-// 			if (read_piece(info, line))
-// 				return (1);
-// 			place(info);
-// 			print_result(info->res);
-// 		}
-// 		else
-// 			ft_strdel(&line);
-// 	}
-// 	return (0);
-// }
+	print_to_file("helo\n");
+	if (!(info = ft_memalloc(sizeof(t_info))))
+		return (1);
+	info->fd = 0;
+	if (get_player(info))
+		return (1);
+	while (1)
+	{
+		if (read_input(info))
+			return (1);
+		heat_map(info);
+		place(info);
+		print_result(info->res);
+	}
+	return (0);
+}

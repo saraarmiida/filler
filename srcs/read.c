@@ -6,7 +6,7 @@
 /*   By: spentti <spentti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 14:43:00 by spentti           #+#    #+#             */
-/*   Updated: 2020/03/04 15:39:47 by spentti          ###   ########.fr       */
+/*   Updated: 2020/03/05 17:12:16 by spentti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,10 @@ void	free_token(t_piece *token, int offset)
 	ft_memdel((void **)&token->data);
 }
 
-t_piece	*read_tokenp(char *line, int offset, int fd)
+void	get_token_size(t_piece *token, char *line)
 {
-	int		i;
-	char	**arr;
-	t_piece	*token;
+	char **arr;
 
-	if (!(token = (t_piece *)malloc(sizeof(t_piece))))
-		return (NULL);
 	arr = ft_strsplit(line, ' ');
 	token->h = ft_atoi(arr[1]);
 	token->w = ft_atoi(arr[2]);
@@ -44,54 +40,32 @@ t_piece	*read_tokenp(char *line, int offset, int fd)
 	free(arr[2]);
 	free(arr);
 	ft_strdel(&line);
-	if (offset)
-	{
-		get_next_line(fd, &line);
-		ft_strdel(&line);
-	}
-	if (!(token->data = ft_memalloc(token->h * sizeof(char *))))
-		return (NULL);
-	i = 0;
-	while (i < token->h)
-	{
-		get_next_line(fd, &line);
-		token->data[i] = line + offset;
-		i++;
-	}
-	return (token);
 }
 
 t_piece	*read_token(char *line, int offset, int fd)
 {
 	int		i;
-	char	**arr;
 	t_piece	*token;
 
 	if (!(token = (t_piece *)malloc(sizeof(t_piece))))
 		return (NULL);
-	arr = ft_strsplit(line, ' ');
-	token->h = ft_atoi(arr[1]);
-	token->w = ft_atoi(arr[2]);
-	token->size = token->h * token->w;
-	free(arr[0]);
-	free(arr[1]);
-	free(arr[2]);
-	free(arr);
-	ft_strdel(&line);
+	get_token_size(token, line);
 	if (offset)
 	{
 		get_next_line(fd, &line);
 		ft_strdel(&line);
 	}
-	if (!(token->data = (char **)malloc(sizeof(char *) * token->h)))
+	if (!(token->data = (char **)malloc(sizeof(char *) * token->h + 1)))
 		return (NULL);
 	i = 0;
 	while (i < token->h)
 	{
 		get_next_line(fd, &line);
-		token->data[i] = line + offset;
+		token->data[i] = ft_strdup(line + offset);
+		ft_strdel(&line);
 		i++;
 	}
+	token->data[i] = NULL;
 	return (token);
 }
 
@@ -128,8 +102,8 @@ void	find_offset(t_info *i)
 
 int		read_piece(t_info *i, char *line)
 {
-	if (!(i->piece = read_tokenp(line, 0, i->fd)))
+	if (!(i->piece = read_token(line, 0, i->fd)))
 		return (1);
-	find_offset(i);
+	// find_offset(i);
 	return (0);
 }

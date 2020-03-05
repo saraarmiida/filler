@@ -6,7 +6,7 @@
 /*   By: spentti <spentti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 18:35:11 by spentti           #+#    #+#             */
-/*   Updated: 2020/03/04 15:42:15 by spentti          ###   ########.fr       */
+/*   Updated: 2020/03/05 17:38:17 by spentti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,8 @@ int				read_map(t_info *info, char *line);
 int				read_piece(t_info *info, char *line);
 
 void			print_map(t_piece *map);
+void			print_to_file(char *format, ...);
+void			print_res_to_file(t_point res);
+void			print_heat(t_info *i);
 
 #endif
