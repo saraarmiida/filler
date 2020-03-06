@@ -6,7 +6,7 @@
 /*   By: spentti <spentti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 17:35:11 by spentti           #+#    #+#             */
-/*   Updated: 2020/03/05 17:37:39 by spentti          ###   ########.fr       */
+/*   Updated: 2020/03/06 16:22:10 by spentti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,21 @@
 #include <fcntl.h>
 #include <stdarg.h>
 
-void	print_to_file(char *format, ...)
+void	print_to_file(char *format)
 {
 	FILE	*fd;
-	va_list	ap;
 
 	fd = fopen("filler_log.txt", "a+");
-	va_start(ap, format);
-	fprintf(fd, format, ap);
-	va_end(ap);
+	fprintf(fd, "%s\n", format);
+	fclose(fd);
+}
+
+void	print_int_to_file(int i)
+{
+	FILE	*fd;
+
+	fd = fopen("filler_log.txt", "a+");
+	fprintf(fd, "%d\n", i);
 	fclose(fd);
 }
 

@@ -6,13 +6,26 @@
 /*   By: spentti <spentti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 14:43:00 by spentti           #+#    #+#             */
-/*   Updated: 2020/03/05 17:12:16 by spentti          ###   ########.fr       */
+/*   Updated: 2020/03/06 17:42:48 by spentti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/filler.h"
 
-void	free_token(t_piece *token, int offset)
+void	free_int_arr(int **arr, int h)
+{
+	int	i;
+
+	i = 0;
+	while (i < h)
+	{
+		free(arr[i]);
+		i++;
+	}
+	free(arr);
+}
+
+void	free_token(t_piece *token)
 {
 	int		i;
 
@@ -21,10 +34,18 @@ void	free_token(t_piece *token, int offset)
 	i = 0;
 	while (i < token->h)
 	{
-		ft_strdel(&token->data[i] - offset);
+		ft_strdel(&token->data[i]);
 		i++;
 	}
 	ft_memdel((void **)&token->data);
+	free(token);
+}
+
+void	free_all(t_info *i)
+{
+	free_int_arr(i->hmap, i->board->h);
+	free_token(i->board);
+	free_token(i->piece);
 }
 
 void	get_token_size(t_piece *token, char *line)
@@ -104,6 +125,6 @@ int		read_piece(t_info *i, char *line)
 {
 	if (!(i->piece = read_token(line, 0, i->fd)))
 		return (1);
-	// find_offset(i);
+	find_offset(i);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: spentti <spentti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 13:12:21 by spentti           #+#    #+#             */
-/*   Updated: 2020/01/31 15:08:22 by spentti          ###   ########.fr       */
+/*   Updated: 2020/03/06 17:00:40 by spentti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-# define BUFF_SIZE	50000
+# define BUFF_SIZE	8
 # define FD_MAX		4864
 
 int					get_next_line(const int fd, char **line);
