@@ -23,12 +23,12 @@ void	print_to_file(char *format)
 	fclose(fd);
 }
 
-void	print_int_to_file(int i)
+void	print_int_to_file(int i, int a)
 {
 	FILE	*fd;
 
 	fd = fopen("filler_log.txt", "a+");
-	fprintf(fd, "%d\n", i);
+	fprintf(fd, "%d %d\n", i, a);
 	fclose(fd);
 }
 

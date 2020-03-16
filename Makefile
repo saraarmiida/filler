@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = spentti.filler
+NAME = players/spentti.filler
 
 LIBFT = libft/libft.a
 
@@ -23,7 +23,8 @@ SRC = srcs/main.c \
 	srcs/place.c \
 	srcs/read.c \
 	srcs/utils.c \
-	srcs/test.c
+	srcs/test.c \
+	srcs/free.c
 
 all: $(NAME)
 

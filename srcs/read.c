@@ -12,42 +12,6 @@
 
 #include "../includes/filler.h"
 
-void	free_int_arr(int **arr, int h)
-{
-	int	i;
-
-	i = 0;
-	while (i < h)
-	{
-		free(arr[i]);
-		i++;
-	}
-	free(arr);
-}
-
-void	free_token(t_piece *token)
-{
-	int		i;
-
-	if (!token->data)
-		return ;
-	i = 0;
-	while (i < token->h)
-	{
-		ft_strdel(&token->data[i]);
-		i++;
-	}
-	ft_memdel((void **)&token->data);
-	free(token);
-}
-
-void	free_all(t_info *i)
-{
-	free_int_arr(i->hmap, i->board->h);
-	free_token(i->board);
-	free_token(i->piece);
-}
-
 void	get_token_size(t_piece *token, char *line)
 {
 	char **arr;
@@ -63,36 +27,57 @@ void	get_token_size(t_piece *token, char *line)
 	ft_strdel(&line);
 }
 
-t_piece	*read_token(char *line, int offset, int fd)
+t_piece	*read_token(char *line, int offset, t_info *in)
 {
 	int		i;
-	t_piece	*token;
-
-	if (!(token = (t_piece *)malloc(sizeof(t_piece))))
-		return (NULL);
-	get_token_size(token, line);
+	
+	get_token_size(in->board, line);
+	// ft_strdel(&line);
 	if (offset)
 	{
-		get_next_line(fd, &line);
+		get_next_line(in->fd, &line);
 		ft_strdel(&line);
 	}
-	if (!(token->data = (char **)malloc(sizeof(char *) * token->h + 1)))
+	if (!(in->board->data = (char **)malloc(sizeof(char *) * (in->board->h + 1))))
 		return (NULL);
 	i = 0;
-	while (i < token->h)
+	while (i < in->board->h)
 	{
-		get_next_line(fd, &line);
-		token->data[i] = ft_strdup(line + offset);
+		get_next_line(in->fd, &line);
+		in->board->data[i] = ft_strdup(line + offset);
 		ft_strdel(&line);
 		i++;
 	}
-	token->data[i] = NULL;
-	return (token);
+	in->board->data[i] = NULL;
+	return (in->board);
+}
+
+t_piece	*read_tokenp(char *line, t_info *in)
+{
+	int		i;
+	
+	get_token_size(in->piece, line);
+	// ft_strdel(&line);
+	if (!(in->piece->data = (char **)malloc(sizeof(char *) * (in->piece->h + 1))))
+		return (NULL);
+	i = 0;
+	while (i < in->piece->h)
+	{
+		get_next_line(in->fd, &line);
+		in->piece->data[i] = ft_strdup(line);
+		ft_strdel(&line);
+		i++;
+	}
+	in->piece->data[i] = NULL;
+	return (in->piece);
 }
 
 int		read_map(t_info *i, char *line)
 {
-	if (!(i->board = read_token(line, 4, i->fd)))
+	if (!(i->board = (t_piece *)malloc(sizeof(t_piece))))
+		return (1);
+	read_token(line, 4, i);
+	if (!i->board)
 		return (1);
 	return (0);
 }
@@ -123,7 +108,10 @@ void	find_offset(t_info *i)
 
 int		read_piece(t_info *i, char *line)
 {
-	if (!(i->piece = read_token(line, 0, i->fd)))
+	if (!(i->piece = (t_piece *)malloc(sizeof(t_piece))))
+		return (1);
+	read_tokenp(line, i);
+	if (!i->piece)
 		return (1);
 	find_offset(i);
 	return (0);

@@ -91,13 +91,14 @@ void	find_place(t_info *i)
 		{
 			if (try_place(i, x, y) == 0)
 			{
-				if ((score = count_score(i, x, y)) < min_score)
+				score = count_score(i, x, y);
+				if (min_score == 0)
 				{
 					min_score = score;
 					i->res.y = y;
 					i->res.x = x;
 				}
-				else if (min_score == 0)
+				else if (score < min_score)
 				{
 					min_score = score;
 					i->res.y = y;

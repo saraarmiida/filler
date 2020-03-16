@@ -63,6 +63,6 @@ void			print_map(t_piece *map);
 void			print_to_file(char *format);
 void			print_res_to_file(t_point res);
 void			print_heat(t_info *i);
-void			print_int_to_file(int i);
+void			print_int_to_file(int i, int a);
 
 #endif

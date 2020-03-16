@@ -16,7 +16,10 @@
 
 static void	print_result(t_point p)
 {
-	ft_printf("%d %d\n", p.y, p.x);
+	ft_putnbr(p.y);
+	ft_putchar(' ');
+	ft_putnbr(p.x);
+	ft_putchar('\n');
 }
 
 static int	get_player(t_info *i)
@@ -53,7 +56,6 @@ int			read_input(t_info *i)
 		{
 			if (read_piece(i, line))
 				return (0);
-			print_map(i->piece);
 			return (0);
 		}
 		else
@@ -62,24 +64,54 @@ int			read_input(t_info *i)
 	return (0);
 }
 
+void		init_struct(t_info *i)
+{
+	i->player.id = 0;
+	i->player.start.x = 0;
+	i->player.start.y = 0;
+	i->enemy.id = 0;
+	i->enemy.start.x = 0;
+	i->enemy.start.y = 0;
+	i->board = NULL;
+	i->piece = NULL;
+	i->piece_off.x = 0;
+	i->piece_off.y = 0;
+	i->start.x = 0;
+	i->start.y = 0;
+	i->res.x = 0;
+	i->res.y = 0;
+	i->hmap = NULL;
+	i->fd = 0;
+}
+
 int			main(void)
 {
 	t_info	*info;
 
-
 	if (!(info = (t_info*)malloc(sizeof(t_info))))
 		return (1);
-	info->fd = 0;
+	init_struct(info);
 	if (get_player(info))
 		return (1);
+	// print_to_file("main point 1");
 	while (1)
 	{
+		// print_to_file("    main point 2");
 		if (read_input(info))
 			return (1);
+		print_int_to_file(info->board->h, info->board->w);
+		print_map(info->board);
+		print_int_to_file(info->piece->h, info->piece->w);
+		print_map(info->piece);
+		// print_to_file("    main point 3");
 		heat_map(info);
+		// print_to_file("    main point 4");
 		place(info);
+		// print_to_file("    main point 5");
 		free_all(info);
+		// print_to_file("    main point 6");
 		print_result(info->res);
+		// print_to_file("    main point 7");
 	}
 	return (0);
 }
