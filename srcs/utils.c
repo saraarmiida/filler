@@ -14,14 +14,14 @@
 
 int			is_around(t_info *i, int x, int y, int a)
 {
-	if (x + 1 < i->board->w && i->hmap[y][x + 1] == a)
+	if (x + 1 < i->board_w && i->hmap[y][x + 1] == a)
 		return (1);
-	if (x + 1 < i->board->w && y + 1 < i->board->h && \
+	if (x + 1 < i->board_w && y + 1 < i->board_h && \
 	i->hmap[y + 1][x + 1] == a)
 		return (1);
-	if (y + 1 < i->board->h && i->hmap[y + 1][x] == a)
+	if (y + 1 < i->board_h && i->hmap[y + 1][x] == a)
 		return (1);
-	if (x - 1 >= 0 && y + 1 < i->board->h && i->hmap[y + 1][x - 1] == a)
+	if (x - 1 >= 0 && y + 1 < i->board_h && i->hmap[y + 1][x - 1] == a)
 		return (1);
 	if (x - 1 >= 0 && i->hmap[y][x - 1] == a)
 		return (1);
@@ -29,7 +29,7 @@ int			is_around(t_info *i, int x, int y, int a)
 		return (1);
 	if (y - 1 >= 0 && i->hmap[y - 1][x] == a)
 		return (1);
-	if (x + 1 < i->board->w && y - 1 >= 0 && i->hmap[y - 1][x + 1] == a)
+	if (x + 1 < i->board_w && y - 1 >= 0 && i->hmap[y - 1][x + 1] == a)
 		return (1);
 	return (0);
 }

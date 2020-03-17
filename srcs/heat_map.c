@@ -18,24 +18,24 @@ static void	locate_players(int *y, t_info *i, int **map)
 
 	x = 0;
 	// print_to_file("            locate point 1");
-	while (x < i->board->w)
+	while (x < i->board_w)
 	{
 		// print_int_to_file(*y);
-		// print_to_file(i->board->data[*y + 1]);
+		// print_to_file(i->board.data[*y + 1]);
 		// print_to_file("            locate point 2");
-		if (i->board->data[*y][x] == '.')
+		if (i->board[*y][x] == '.')
 		{
 			// print_to_file("            locate point 3");
 			map[*y][x] = 0;
 		}
-		else if (i->board->data[*y][x] == i->player.id || \
-		i->board->data[*y][x] == i->player.id + 32)
+		else if (i->board[*y][x] == i->player.id || \
+		i->board[*y][x] == i->player.id + 32)
 		{
 			// print_to_file("            locate point 4");
 			map[*y][x] = -2;
 		}
-		else if (i->board->data[*y][x] == i->enemy.id || \
-		i->board->data[*y][x] == i->enemy.id + 32)
+		else if (i->board[*y][x] == i->enemy.id || \
+		i->board[*y][x] == i->enemy.id + 32)
 		{
 			// print_to_file("            locate point 5");
 			map[*y][x] = -1;
@@ -52,13 +52,13 @@ static int	create_heat_map(t_info *i)
 
 	y = 0;
 	// print_to_file("        create point 1");
-	if (!(map = (int **)malloc(sizeof(int *) * i->board->h)))
+	if (!(map = (int **)malloc(sizeof(int *) * i->board_h)))
 		return (1);
 	// print_to_file("        create point 2");
-	while (y < i->board->h)
+	while (y < i->board_h)
 	{
 		// print_to_file("        create point 3");
-		if (!(map[y] = (int *)malloc(sizeof(int) * i->board->w)))
+		if (!(map[y] = (int *)malloc(sizeof(int) * i->board_w)))
 			return (1);
 		// print_to_file("        create point 4");
 		locate_players(&y, i, map);
@@ -76,10 +76,10 @@ static void	init_heat_map(t_info *i)
 	int y;
 
 	y = 0;
-	while (y < i->board->h)
+	while (y < i->board_h)
 	{
 		x = 0;
-		while (x < i->board->w)
+		while (x < i->board_w)
 		{
 			if (i->hmap[y][x] == 0)
 			{
@@ -99,13 +99,13 @@ static void	count_heat_map(t_info *i)
 	int a;
 
 	a = 1;
-	while (a < i->board->w || a < i->board->h)
+	while (a < i->board_w || a < i->board_h)
 	{
 		y = 0;
-		while (y < i->board->h)
+		while (y < i->board_h)
 		{
 			x = 0;
-			while (x < i->board->w)
+			while (x < i->board_w)
 			{
 				if (i->hmap[y][x] == 0)
 					if (is_around(i, x, y, a))

@@ -29,21 +29,16 @@ typedef struct	s_player
 	t_point		start;
 }				t_player;
 
-typedef struct	s_piece
-{
-	char		**data;
-	int			w;
-	int			h;
-	int			size;
-	
-}				t_piece;
-
 typedef struct	s_info
 {
 	t_player	player;
 	t_player	enemy;
-	t_piece		*board;
-	t_piece		*piece;
+	char		**board;
+	int			board_w;
+	int			board_h;
+	char		**piece;
+	int			piece_w;
+	int			piece_h;
 	t_point		piece_off;
 	t_point		start;
 	t_point		res;
@@ -55,11 +50,11 @@ typedef struct	s_info
 int				heat_map(t_info *i);
 void			place(t_info *i);
 int				is_around(t_info *i, int x, int y, int a);
-int				read_map(t_info *info, char *line);
-int				read_piece(t_info *info, char *line);
+int				read_map(t_info *info, const char *line);
+int				read_piece(t_info *info, const char *line);
 void			free_all(t_info *i);
 
-void			print_map(t_piece *map);
+void			print_map(char **map, int h);
 void			print_to_file(char *format);
 void			print_res_to_file(t_point res);
 void			print_heat(t_info *i);

@@ -15,25 +15,24 @@ void	free_int_arr(int **arr, int h)
 	free(arr);
 }
 
-void	free_token(t_piece *token)
+void	free_token(char **token, int h)
 {
 	int		i;
 
-	if (!token->data || !token)
+	if (!token)
 		return ;
 	i = 0;
-	while (i < token->h)
+	while (i < h)
 	{
-		ft_strdel(&token->data[i]);
+		ft_strdel(&token[i]);
 		i++;
 	}
-	free(token->data);
 	free(token);
 }
 
 void	free_all(t_info *i)
 {
-	free_int_arr(i->hmap, i->board->h);
-	free_token(i->board);
-	free_token(i->piece);
+	free_int_arr(i->hmap, i->board_h);
+	free_token(i->board, i->board_h);
+	free_token(i->piece, i->piece_h);
 }

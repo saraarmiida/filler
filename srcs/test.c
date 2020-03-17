@@ -49,10 +49,10 @@ void		print_heat(t_info *i)
 
 	fd = fopen("filler_log.txt", "a+");
 	y = 0;
-	while (y < i->board->h)
+	while (y < i->board_h)
 	{
 		x = 0;
-		while (x < i->board->w)
+		while (x < i->board_w)
 		{
 			fprintf(fd, "%d ", i->hmap[y][x]);
 			x++;
@@ -64,16 +64,16 @@ void		print_heat(t_info *i)
 	fclose(fd);
 }
 
-void		print_map(t_piece *map)
+void		print_map(char **map, int h)
 {
 	FILE	*fd;
 	int y;
 
 	fd = fopen("filler_log.txt", "a+");
 	y = 0;
-	while (y < map->h)
+	while (y < h)
 	{
-		fprintf(fd, "%s\n", map->data[y]);
+		fprintf(fd, "%s\n", map[y]);
 		y++;
 	}
 	fprintf(fd, "\n");

@@ -12,71 +12,78 @@
 
 #include "../includes/filler.h"
 
-void	get_token_size(t_piece *token, char *line)
+void	get_token_size(int *h, int *w, const char *line)
 {
-	char **arr;
+	int		off;
 
-	arr = ft_strsplit(line, ' ');
-	token->h = ft_atoi(arr[1]);
-	token->w = ft_atoi(arr[2]);
-	token->size = token->h * token->w;
-	free(arr[0]);
-	free(arr[1]);
-	free(arr[2]);
-	free(arr);
-	ft_strdel(&line);
+	print_to_file("						size point 1");
+	off = ft_strncmp(line, "Plateau", 7) == 0 ? 8 : 6;
+	print_to_file("						size point 2");
+	*h = ft_atoi(&line[off]);
+	print_int_to_file(1, *h);
+	print_to_file("						size point 3");
+	*w = ft_atoi(line + off + ft_intlen(*h) + 1);
+	print_to_file("						size point 4");
+	print_to_file("						size point 5");
 }
 
-t_piece	*read_token(char *line, int offset, t_info *in)
+int		read_board2(const char *line, t_info *in)
 {
 	int		i;
-	
-	get_token_size(in->board, line);
-	// ft_strdel(&line);
-	if (offset)
-	{
-		get_next_line(in->fd, &line);
-		ft_strdel(&line);
-	}
-	if (!(in->board->data = (char **)malloc(sizeof(char *) * (in->board->h + 1))))
-		return (NULL);
-	i = 0;
-	while (i < in->board->h)
-	{
-		get_next_line(in->fd, &line);
-		in->board->data[i] = ft_strdup(line + offset);
-		ft_strdel(&line);
-		i++;
-	}
-	in->board->data[i] = NULL;
-	return (in->board);
-}
+	char	*line2;
 
-t_piece	*read_tokenp(char *line, t_info *in)
-{
-	int		i;
-	
-	get_token_size(in->piece, line);
-	// ft_strdel(&line);
-	if (!(in->piece->data = (char **)malloc(sizeof(char *) * (in->piece->h + 1))))
-		return (NULL);
-	i = 0;
-	while (i < in->piece->h)
-	{
-		get_next_line(in->fd, &line);
-		in->piece->data[i] = ft_strdup(line);
-		ft_strdel(&line);
-		i++;
-	}
-	in->piece->data[i] = NULL;
-	return (in->piece);
-}
-
-int		read_map(t_info *i, char *line)
-{
-	if (!(i->board = (t_piece *)malloc(sizeof(t_piece))))
+	print_to_file("				token point 1");
+	get_token_size(&in->board_h, &in->board_w, line);
+	print_to_file("				token point 2");
+	print_to_file("				token point 3");
+	get_next_line(in->fd, &line2);
+	ft_strdel(&line2);
+	print_to_file("				token point 4");
+	if (!(in->board = (char **)malloc(sizeof(char *) * (in->board_h + 1))))
 		return (1);
-	read_token(line, 4, i);
+	print_to_file("				token point 5");
+	i = 0;
+	while (i < in->board_h)
+	{
+		print_to_file("				token point 6");
+		get_next_line(in->fd, &line2);
+		in->board[i] = ft_strdup(line2 + 4);
+		// print_to_file(in->board[i]);
+		ft_strdel(&line2);
+		i++;
+		print_to_file("				token point 7");
+	}
+	print_to_file("				token point 8");
+	// print_to_file("\n\n");
+	in->board[i] = NULL;
+	return (0);
+}
+
+int		read_piece2(const char *line, t_info *in)
+{
+	int		i;
+	char	*line2;
+	
+	get_token_size(&in->piece_h, &in->piece_w, line);
+	if (!(in->piece = (char **)malloc(sizeof(char *) * (in->piece_h + 1))))
+		return (1);
+	i = 0;
+	while (i < in->piece_h)
+	{
+		get_next_line(in->fd, &line2);
+		in->piece[i] = ft_strdup(line2);
+		ft_strdel(&line2);
+		i++;
+	}
+	in->piece[i] = NULL;
+	return (0);
+}
+
+int		read_map(t_info *i, const char *line)
+{
+	print_to_file("read map point 1");
+	read_board2(line, i);
+	print_to_file("read map point 2");
 	if (!i->board)
 		return (1);
 	return (0);
@@ -88,14 +95,14 @@ void	find_offset(t_info *i)
 	int	x;
 
 	y = 0;
-	i->piece_off.y = i->piece->h;
-	i->piece_off.x = i->piece->w;
-	while (y < i->piece->h)
+	i->piece_off.y = i->piece_h;
+	i->piece_off.x = i->piece_w;
+	while (y < i->piece_h)
 	{
 		x = 0;
-		while (x < i->piece->w)
+		while (x < i->piece_w)
 		{
-			if (i->piece->data[y][x] == '*')
+			if (i->piece[y][x] == '*')
 			{
 				i->piece_off.y = (y < i->piece_off.y) ? y : i->piece_off.y;
 				i->piece_off.x = (x < i->piece_off.x) ? x : i->piece_off.x;
@@ -106,11 +113,9 @@ void	find_offset(t_info *i)
 	}
 }
 
-int		read_piece(t_info *i, char *line)
+int		read_piece(t_info *i, const char *line)
 {
-	if (!(i->piece = (t_piece *)malloc(sizeof(t_piece))))
-		return (1);
-	read_tokenp(line, i);
+	read_piece2(line, i);
 	if (!i->piece)
 		return (1);
 	find_offset(i);

@@ -20,10 +20,10 @@ int		count_score(t_info *i, int x, int y)
 
 	yp = i->piece_off.y;
 	score = 0;
-	while (yp < i->piece->h)
+	while (yp < i->piece_h)
 	{
 		xp = i->piece_off.x;
-		while (xp < i->piece->w)
+		while (xp < i->piece_w)
 		{
 			score += i->hmap[y][x];
 			xp++;
@@ -47,17 +47,17 @@ int		try_place(t_info *i, int x, int y)
 	xb = x;
 	yb = y;
 	overlap = 0;
-	while (yp < i->piece->h)
+	while (yp < i->piece_h)
 	{
 		xp = i->piece_off.x;
 		xb = x;
-		while (xp < i->piece->w)
+		while (xp < i->piece_w)
 		{
-			if (i->piece->data[yp][xp] == '*')
+			if (i->piece[yp][xp] == '*')
 			{
-				if (yb >= i->board->h)
+				if (yb >= i->board_h)
 					return (1);
-				if (xb >= i->board->w)
+				if (xb >= i->board_w)
 					return (1);
 				if (i->hmap[yb][xb] == -2)
 					overlap++;
@@ -84,10 +84,10 @@ void	find_place(t_info *i)
 
 	y = 0;
 	min_score = 0;
-	while (y < i->board->h)
+	while (y < i->board_h)
 	{
 		x = 0;
-		while (x < i->board->w)
+		while (x < i->board_w)
 		{
 			if (try_place(i, x, y) == 0)
 			{
