@@ -29,30 +29,49 @@ void	get_token_size(int *h, int *w, const char *line)
 
 int		read_board2(const char *line, t_info *in)
 {
-	int		i;
+	int			i;
 	char	*line2;
 
 	print_to_file("				token point 1");
 	get_token_size(&in->board_h, &in->board_w, line);
 	print_to_file("				token point 2");
-	print_to_file("				token point 3");
 	get_next_line(in->fd, &line2);
 	ft_strdel(&line2);
 	print_to_file("				token point 4");
-	if (!(in->board = (char **)malloc(sizeof(char *) * (in->board_h + 1))))
+	if (!(in->board = (const char **)malloc(sizeof(char *) * (in->board_h + 1))))
 		return (1);
 	print_to_file("				token point 5");
 	i = 0;
 	while (i < in->board_h)
 	{
-		print_to_file("				token point 6");
 		get_next_line(in->fd, &line2);
-		in->board[i] = ft_strdup(line2 + 4);
-		// print_to_file(in->board[i]);
-		ft_strdel(&line2);
+		// print_to_file("\nLINE:");
+		// print_to_file(line2);
+		in->board[i] = line2 + 4;
+		// print_to_file("\nBOARD[i]:");
+		// print_to_file((char *)in->board[i]);
 		i++;
-		print_to_file("				token point 7");
+		// print_to_file("\nBOARD0:");
+		// print_map(in->board, i);
 	}
+	// print_to_file("\nBOARD1:");
+	// print_to_file((char *)in->board[0]);
+	// print_to_file((char *)in->board[1]);
+	// print_to_file((char *)in->board[2]);
+	// print_to_file((char *)in->board[3]);
+	// print_to_file((char *)in->board[4]);
+	// print_to_file((char *)in->board[5]);
+	// print_to_file((char *)in->board[6]);
+	// print_to_file((char *)in->board[7]);
+	// print_to_file((char *)in->board[8]);
+	// print_to_file((char *)in->board[9]);
+	// print_to_file((char *)in->board[10]);
+	// print_to_file((char *)in->board[11]);
+	// print_to_file((char *)in->board[12]);
+	// print_to_file((char *)in->board[13]);
+	// print_to_file((char *)in->board[14]);
+	// print_to_file("\nBOARD2:");
+	// print_map(in->board, in->board_h);
 	print_to_file("				token point 8");
 	// print_to_file("\n\n");
 	in->board[i] = NULL;

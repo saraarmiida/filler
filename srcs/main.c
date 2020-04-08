@@ -14,12 +14,15 @@
 #include <fcntl.h>
 #include <stdarg.h>
 
-static void	print_result(t_point p)
+static void	print_result(int y, int x)
 {
-	ft_putnbr(p.y);
+	print_to_file("    		print point 1");
+	ft_putnbr(y);
 	ft_putchar(' ');
-	ft_putnbr(p.x);
+	print_to_file("    		print point 2");
+	ft_putnbr(x);
 	ft_putchar('\n');
+	print_to_file("    		print point 3");
 }
 
 static int	get_player(t_info *i)
@@ -46,10 +49,12 @@ static int	get_player(t_info *i)
 int			read_input(t_info *i)
 {
 	char	*line;
+	int		counter; 
 
 	line = NULL;
+	counter = 0;
 	print_to_file("read point 1");
-	while (get_next_line(i->fd, &line) > 0)
+	while (counter < 2 && get_next_line(i->fd, &line) > 0)
 	{
 		print_to_file("read point 2");
 		if (ft_strncmp(line, "Plateau", 7) == 0)
@@ -58,6 +63,7 @@ int			read_input(t_info *i)
 			if (read_map(i, line))
 				return (1);
 			print_to_file("read point 4");
+			counter++;
 		}
 		else if (ft_strncmp(line, "Piece", 5) == 0)
 		{
@@ -65,6 +71,7 @@ int			read_input(t_info *i)
 			if (read_piece(i, line))
 				return (1);
 			print_to_file("read point 6");
+			counter++;
 		}
 		print_to_file("read point 7");
 		ft_strdel(&line);
@@ -118,7 +125,8 @@ int			main(void)
 		print_to_file("    main point 5");
 		free_all(info);
 		print_to_file("    main point 6");
-		print_result(info->res);
+		print_res_to_file(info->res);
+		print_result(info->res.y, info->res.x);
 		print_to_file("    main point 7");
 	}
 	return (0);

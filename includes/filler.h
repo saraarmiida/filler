@@ -33,7 +33,7 @@ typedef struct	s_info
 {
 	t_player	player;
 	t_player	enemy;
-	char		**board;
+	const char	**board;
 	int			board_w;
 	int			board_h;
 	char		**piece;
@@ -54,7 +54,7 @@ int				read_map(t_info *info, const char *line);
 int				read_piece(t_info *info, const char *line);
 void			free_all(t_info *i);
 
-void			print_map(char **map, int h);
+void			print_map(const char **map, int h);
 void			print_to_file(char *format);
 void			print_res_to_file(t_point res);
 void			print_heat(t_info *i);

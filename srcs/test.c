@@ -64,7 +64,7 @@ void		print_heat(t_info *i)
 	fclose(fd);
 }
 
-void		print_map(char **map, int h)
+void		print_map(const char **map, int h)
 {
 	FILE	*fd;
 	int y;
