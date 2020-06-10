@@ -1,6 +1,6 @@
-seed = 4572
-O: timedout
+seed = 7919
+players/spentti.filler: Segfault at 11
 X: error on input
 players/superjeannot.filler won
 Score:
-0AGAINST9
+11AGAINST36

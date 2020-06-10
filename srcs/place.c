@@ -6,7 +6,7 @@
 /*   By: spentti <spentti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/28 10:05:05 by spentti           #+#    #+#             */
-/*   Updated: 2020/03/04 12:24:09 by spentti          ###   ########.fr       */
+/*   Updated: 2020/06/10 16:24:17 by spentti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,20 +18,13 @@ int		count_score(t_info *i, int x, int y)
 	int xp;
 	int yp;
 
-	print_to_file("    				count score point 1");
-	print_int_to_file(x, y);
 	yp = i->piece_off.y;
 	score = 0;
-	print_to_file("    				count score point 2");
 	while (yp < i->piece_h)
 	{
-		print_to_file("    				count score point 3");
-		print_int_to_file(x, y);
 		xp = i->piece_off.x;
 		while (xp < i->piece_w)
 		{
-			print_to_file("    				count score point 4");
-			print_int_to_file(x, y);
 			if (i->piece[yp][xp] == '*')
 				score += i->hmap[y][x];
 			xp++;
@@ -40,7 +33,6 @@ int		count_score(t_info *i, int x, int y)
 		yp++;
 		y++;
 	}
-	print_to_file("    				count score point 5");
 	return (score);
 }
 
@@ -56,17 +48,18 @@ int		try_place(t_info *i, int x, int y)
 	xb = x;
 	yb = y;
 	overlap = 0;
-	print_to_file("    				try place point 1");
+	print_to_file("try1");
 	while (yp < i->piece_h)
 	{
-		print_to_file("    				try place point 2");
+		print_to_file("try2");
 		xp = i->piece_off.x;
 		xb = x;
 		while (xp < i->piece_w)
 		{
-			print_to_file("    				try place point 3");
+			print_to_file("try3");
 			if (i->piece[yp][xp] == '*')
 			{
+				print_to_file("try4");
 				if (yb >= i->board_h)
 					return (1);
 				if (xb >= i->board_w)
@@ -82,7 +75,7 @@ int		try_place(t_info *i, int x, int y)
 		yb++;
 		yp++;
 	}
-	print_to_file("    				try place point 3");
+	print_to_file("try5");
 	if (overlap != 1)
 		return (1);
 	return (0);
@@ -97,51 +90,47 @@ void	find_place(t_info *i)
 
 	y = 0;
 	min_score = 0;
-	print_to_file("    			find place point 1");
+	print_to_file("place2");
 	while (y < i->board_h)
 	{
 		x = 0;
+		print_to_file("place3");
 		while (x < i->board_w)
 		{
-			// print_to_file("    			find place point 2");
+			print_to_file("place4");
 			if (try_place(i, x, y) == 0)
 			{
-				print_to_file("    			find place point 3");
+				print_to_file("place4.5");
 				score = count_score(i, x, y);
-				print_to_file("    			find place point 3.2");
+				print_to_file("place5");
 				if (min_score == 0)
 				{
-					print_to_file("    			find place point 4");
+					print_to_file("place6");
 					min_score = score;
 					i->res.y = y;
 					i->res.x = x;
 				}
 				else if (score < min_score)
 				{
-					print_to_file("    			find place point 5");
+					print_to_file("place7");
 					min_score = score;
 					i->res.y = y;
 					i->res.x = x;
 				}
-				print_to_file("    			find place point 5.2");
+
 			}
 			x++;
 		}
 		y++;
 	}
-	print_to_file("    			find place point 6");
 }
 
 void	place(t_info *i)
 {
-	print_to_file("    		place point 1");
 	i->res.y = 0;
 	i->res.x = 0;
+	print_to_file("place1");
 	find_place(i);
-	print_to_file("    		place point 2");
-	i->res.y -= i->piece_off.y;
+	print_to_file("place5");
 	i->res.x -= i->piece_off.x;
-	print_to_file("    		place point 3");
-	print_to_file("\n\nRESULT:");
-	print_int_to_file(i->res.y, i->res.x);
 }
