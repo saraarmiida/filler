@@ -45,13 +45,14 @@ typedef struct	s_info
 	int			**hmap;
 	int			inited;
 	int			fd;
+	int			first_time;
 }				t_info;
 
 int				heat_map(t_info *i);
 void			place(t_info *i);
 int				is_around(t_info *i, int x, int y, int a);
-int				read_map(t_info *info, const char *line);
-int				read_piece(t_info *info, const char *line);
+int				read_map(t_info *info, char *line);
+int				read_piece(t_info *info, char *line);
 void			free_all(t_info *i);
 
 void			print_map(const char **map, int h);
@@ -59,5 +60,6 @@ void			print_to_file(char *format);
 void			print_res_to_file(t_point res);
 void			print_heat(t_info *i);
 void			print_int_to_file(int i, int a);
+void			get_token_size(int *h, int *w, char *line);
 
 #endif

@@ -23,6 +23,7 @@ static void	locate_players(int *y, t_info *i, int **map)
 		// print_int_to_file(*y);
 		// print_to_file(i->board.data[*y + 1]);
 		print_to_file("            locate point 2");
+		print_int_to_file(*y, x);
 		if (i->board[*y][x] == '.')
 		{
 			print_to_file("            locate point 3");

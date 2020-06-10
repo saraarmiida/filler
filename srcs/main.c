@@ -36,13 +36,13 @@ static int	get_player(t_info *i)
 	{
 		i->player.id = (line[10] == '1' ? 'O' : 'X');
 		i->enemy.id = (line[10] == '2' ? 'O' : 'X');
+		ft_strdel(&line);
 	}
 	else
 	{
 		ft_strdel(&line);
 		return (1);
 	}
-	ft_strdel(&line);
 	return (0);
 }
 
@@ -57,12 +57,17 @@ int			read_input(t_info *i)
 	while (counter < 2 && get_next_line(i->fd, &line) > 0)
 	{
 		print_to_file("read point 2");
-		if (ft_strncmp(line, "Plateau", 7) == 0)
+		if (ft_strncmp(line, "Plateau", 7) == 0 && i->first_time != 1)
 		{
 			print_to_file("read point 3");
 			if (read_map(i, line))
 				return (1);
 			print_to_file("read point 4");
+			counter++;
+		}
+		if (i->first_time == 1)
+		{
+			i->first_time = 0;
 			counter++;
 		}
 		else if (ft_strncmp(line, "Piece", 5) == 0)
@@ -78,6 +83,22 @@ int			read_input(t_info *i)
 	}
 	print_to_file("read point 8");
 	return (0);
+}
+
+int			init_map(t_info *i)
+{
+	char	*line;
+
+	if (get_next_line(i->fd, &line) > 0 && ft_strncmp(line, "Plateau", 7) == 0)
+	{
+		get_token_size(&i->board_h, &i->board_w, line);
+		if (!(i->board = (const char **)malloc(sizeof(char *) * (i->board_h + 1))))
+			return (1);
+		if (read_map(i, line))
+			return (1);
+		return (0);
+	}
+	return (1);
 }
 
 void		init_struct(t_info *i)
@@ -96,6 +117,7 @@ void		init_struct(t_info *i)
 	i->res.y = 0;
 	i->hmap = NULL;
 	i->fd = 0;
+	i->first_time = 1;
 }
 
 int			main(void)
@@ -106,6 +128,8 @@ int			main(void)
 		return (1);
 	init_struct(info);
 	if (get_player(info))
+		return (1);
+	if (init_map(info))
 		return (1);
 	print_to_file("main point 1");
 	while (1)

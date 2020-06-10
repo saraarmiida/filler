@@ -14,16 +14,19 @@
 # define VISUALIZER_H
 
 # include "mlx.h"
-# include "filler.h"
+# include "../../includes/filler.h"
 
 # define WIDTH 1200
 # define HEIGHT 800
 
 typedef struct	s_visu
 {
-	void		*mlx_ptr;
-	void		*win_ptr;
-	void		*img_ptr;
+	char		**map;
+	int			map_size_x;
+	int			map_size_y;
+	void		*mlx;
+	void		*win;
+	void		*img;
 	int			bits_per_pixel;
 	int			size_line;
 	int			endian;

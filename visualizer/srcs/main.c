@@ -25,10 +25,11 @@ int	main(void)
 	if (!(p = (t_visu *)malloc(sizeof(t_visu))))
 		return (1);
 	init_struct(p);
-	p->mlx_ptr = mlx_init();
-	p->win_ptr = mlx_new_window(p->mlx_ptr, WIDTH, HEIGHT, "Filler");
-	p->img_ptr = mlx_new_image(p->mlx_ptr, WIDTH, HEIGHT);
-	
-	mlx_loop(p->mlx_ptr);
+	p->mlx = mlx_init();
+	p->win = mlx_new_window(p->mlx, WIDTH, HEIGHT, "Filler");
+	p->img = mlx_new_image(p->mlx, WIDTH, HEIGHT);
+	mlx_loop_hook(p->win, 2, 2, key_hook, p);
+	mlx_loop(p->mlx);
+	free(p);
 	return (0);
 }

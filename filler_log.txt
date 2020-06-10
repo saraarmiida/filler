@@ -1,0 +1,1739 @@
+						size point 1
+						size point 2
+1 15
+						size point 3
+						size point 4
+read map point 1
+
+LINE2: 
+Plateau 15 17:
+
+LINE2: 
+    01234567890123456
+
+BOARD1:
+.................
+.................
+.................
+.................
+.................
+.................
+.................
+.................
+..O..............
+.................
+.................
+.................
+..............X..
+.................
+.................
+
+BOARD2:
+.................
+.................
+.................
+.................
+.................
+.................
+.................
+.................
+..O..............
+.................
+.................
+.................
+..............X..
+.................
+.................
+
+				token point 8
+read map point 2
+main point 1
+    main point 2
+read point 1
+read point 2
+read point 7
+read point 2
+read point 7
+read point 2
+read point 7
+read point 8
+    main point 3
+heat point 1
+        create point 1
+        create point 2
+        create point 3
+        create point 4
+            locate point 1
+            locate point 2
+0 0
+            locate point 3
+            locate point 6
+            locate point 2
+0 1
+            locate point 3
+            locate point 6
+            locate point 2
+0 2
+            locate point 3
+            locate point 6
+            locate point 2
+0 3
+            locate point 3
+            locate point 6
+            locate point 2
+0 4
+            locate point 3
+            locate point 6
+            locate point 2
+0 5
+            locate point 3
+            locate point 6
+            locate point 2
+0 6
+            locate point 3
+            locate point 6
+            locate point 2
+0 7
+            locate point 3
+            locate point 6
+            locate point 2
+0 8
+            locate point 3
+            locate point 6
+            locate point 2
+0 9
+            locate point 3
+            locate point 6
+            locate point 2
+0 10
+            locate point 3
+            locate point 6
+            locate point 2
+0 11
+            locate point 3
+            locate point 6
+            locate point 2
+0 12
+            locate point 3
+            locate point 6
+            locate point 2
+0 13
+            locate point 3
+            locate point 6
+            locate point 2
+0 14
+            locate point 3
+            locate point 6
+            locate point 2
+0 15
+            locate point 3
+            locate point 6
+            locate point 2
+0 16
+            locate point 3
+            locate point 6
+        create point 5
+        create point 3
+        create point 4
+            locate point 1
+            locate point 2
+1 0
+            locate point 3
+            locate point 6
+            locate point 2
+1 1
+            locate point 3
+            locate point 6
+            locate point 2
+1 2
+            locate point 3
+            locate point 6
+            locate point 2
+1 3
+            locate point 3
+            locate point 6
+            locate point 2
+1 4
+            locate point 3
+            locate point 6
+            locate point 2
+1 5
+            locate point 3
+            locate point 6
+            locate point 2
+1 6
+            locate point 3
+            locate point 6
+            locate point 2
+1 7
+            locate point 3
+            locate point 6
+            locate point 2
+1 8
+            locate point 3
+            locate point 6
+            locate point 2
+1 9
+            locate point 3
+            locate point 6
+            locate point 2
+1 10
+            locate point 3
+            locate point 6
+            locate point 2
+1 11
+            locate point 3
+            locate point 6
+            locate point 2
+1 12
+            locate point 3
+            locate point 6
+            locate point 2
+1 13
+            locate point 3
+            locate point 6
+            locate point 2
+1 14
+            locate point 3
+            locate point 6
+            locate point 2
+1 15
+            locate point 3
+            locate point 6
+            locate point 2
+1 16
+            locate point 3
+            locate point 6
+        create point 5
+        create point 3
+        create point 4
+            locate point 1
+            locate point 2
+2 0
+            locate point 3
+            locate point 6
+            locate point 2
+2 1
+            locate point 3
+            locate point 6
+            locate point 2
+2 2
+            locate point 3
+            locate point 6
+            locate point 2
+2 3
+            locate point 3
+            locate point 6
+            locate point 2
+2 4
+            locate point 3
+            locate point 6
+            locate point 2
+2 5
+            locate point 3
+            locate point 6
+            locate point 2
+2 6
+            locate point 3
+            locate point 6
+            locate point 2
+2 7
+            locate point 3
+            locate point 6
+            locate point 2
+2 8
+            locate point 3
+            locate point 6
+            locate point 2
+2 9
+            locate point 3
+            locate point 6
+            locate point 2
+2 10
+            locate point 3
+            locate point 6
+            locate point 2
+2 11
+            locate point 3
+            locate point 6
+            locate point 2
+2 12
+            locate point 3
+            locate point 6
+            locate point 2
+2 13
+            locate point 3
+            locate point 6
+            locate point 2
+2 14
+            locate point 3
+            locate point 6
+            locate point 2
+2 15
+            locate point 3
+            locate point 6
+            locate point 2
+2 16
+            locate point 3
+            locate point 6
+        create point 5
+        create point 3
+        create point 4
+            locate point 1
+            locate point 2
+3 0
+            locate point 3
+            locate point 6
+            locate point 2
+3 1
+            locate point 3
+            locate point 6
+            locate point 2
+3 2
+            locate point 3
+            locate point 6
+            locate point 2
+3 3
+            locate point 3
+            locate point 6
+            locate point 2
+3 4
+            locate point 3
+            locate point 6
+            locate point 2
+3 5
+            locate point 3
+            locate point 6
+            locate point 2
+3 6
+            locate point 3
+            locate point 6
+            locate point 2
+3 7
+            locate point 3
+            locate point 6
+            locate point 2
+3 8
+            locate point 3
+            locate point 6
+            locate point 2
+3 9
+            locate point 3
+            locate point 6
+            locate point 2
+3 10
+            locate point 3
+            locate point 6
+            locate point 2
+3 11
+            locate point 3
+            locate point 6
+            locate point 2
+3 12
+            locate point 3
+            locate point 6
+            locate point 2
+3 13
+            locate point 3
+            locate point 6
+            locate point 2
+3 14
+            locate point 3
+            locate point 6
+            locate point 2
+3 15
+            locate point 3
+            locate point 6
+            locate point 2
+3 16
+            locate point 3
+            locate point 6
+        create point 5
+        create point 3
+        create point 4
+            locate point 1
+            locate point 2
+4 0
+            locate point 3
+            locate point 6
+            locate point 2
+4 1
+            locate point 3
+            locate point 6
+            locate point 2
+4 2
+            locate point 3
+            locate point 6
+            locate point 2
+4 3
+            locate point 3
+            locate point 6
+            locate point 2
+4 4
+            locate point 3
+            locate point 6
+            locate point 2
+4 5
+            locate point 3
+            locate point 6
+            locate point 2
+4 6
+            locate point 3
+            locate point 6
+            locate point 2
+4 7
+            locate point 3
+            locate point 6
+            locate point 2
+4 8
+            locate point 3
+            locate point 6
+            locate point 2
+4 9
+            locate point 3
+            locate point 6
+            locate point 2
+4 10
+            locate point 3
+            locate point 6
+            locate point 2
+4 11
+            locate point 3
+            locate point 6
+            locate point 2
+4 12
+            locate point 3
+            locate point 6
+            locate point 2
+4 13
+            locate point 3
+            locate point 6
+            locate point 2
+4 14
+            locate point 3
+            locate point 6
+            locate point 2
+4 15
+            locate point 3
+            locate point 6
+            locate point 2
+4 16
+            locate point 3
+            locate point 6
+        create point 5
+        create point 3
+        create point 4
+            locate point 1
+            locate point 2
+5 0
+            locate point 3
+            locate point 6
+            locate point 2
+5 1
+            locate point 3
+            locate point 6
+            locate point 2
+5 2
+            locate point 3
+            locate point 6
+            locate point 2
+5 3
+            locate point 3
+            locate point 6
+            locate point 2
+5 4
+            locate point 3
+            locate point 6
+            locate point 2
+5 5
+            locate point 3
+            locate point 6
+            locate point 2
+5 6
+            locate point 3
+            locate point 6
+            locate point 2
+5 7
+            locate point 3
+            locate point 6
+            locate point 2
+5 8
+            locate point 3
+            locate point 6
+            locate point 2
+5 9
+            locate point 3
+            locate point 6
+            locate point 2
+5 10
+            locate point 3
+            locate point 6
+            locate point 2
+5 11
+            locate point 3
+            locate point 6
+            locate point 2
+5 12
+            locate point 3
+            locate point 6
+            locate point 2
+5 13
+            locate point 3
+            locate point 6
+            locate point 2
+5 14
+            locate point 3
+            locate point 6
+            locate point 2
+5 15
+            locate point 3
+            locate point 6
+            locate point 2
+5 16
+            locate point 3
+            locate point 6
+        create point 5
+        create point 3
+        create point 4
+            locate point 1
+            locate point 2
+6 0
+            locate point 3
+            locate point 6
+            locate point 2
+6 1
+            locate point 3
+            locate point 6
+            locate point 2
+6 2
+            locate point 3
+            locate point 6
+            locate point 2
+6 3
+            locate point 3
+            locate point 6
+            locate point 2
+6 4
+            locate point 3
+            locate point 6
+            locate point 2
+6 5
+            locate point 3
+            locate point 6
+            locate point 2
+6 6
+            locate point 3
+            locate point 6
+            locate point 2
+6 7
+            locate point 3
+            locate point 6
+            locate point 2
+6 8
+            locate point 3
+            locate point 6
+            locate point 2
+6 9
+            locate point 3
+            locate point 6
+            locate point 2
+6 10
+            locate point 3
+            locate point 6
+            locate point 2
+6 11
+            locate point 3
+            locate point 6
+            locate point 2
+6 12
+            locate point 3
+            locate point 6
+            locate point 2
+6 13
+            locate point 3
+            locate point 6
+            locate point 2
+6 14
+            locate point 3
+            locate point 6
+            locate point 2
+6 15
+            locate point 3
+            locate point 6
+            locate point 2
+6 16
+            locate point 3
+            locate point 6
+        create point 5
+        create point 3
+        create point 4
+            locate point 1
+            locate point 2
+7 0
+            locate point 3
+            locate point 6
+            locate point 2
+7 1
+            locate point 3
+            locate point 6
+            locate point 2
+7 2
+            locate point 3
+            locate point 6
+            locate point 2
+7 3
+            locate point 3
+            locate point 6
+            locate point 2
+7 4
+            locate point 3
+            locate point 6
+            locate point 2
+7 5
+            locate point 3
+            locate point 6
+            locate point 2
+7 6
+            locate point 3
+            locate point 6
+            locate point 2
+7 7
+            locate point 3
+            locate point 6
+            locate point 2
+7 8
+            locate point 3
+            locate point 6
+            locate point 2
+7 9
+            locate point 3
+            locate point 6
+            locate point 2
+7 10
+            locate point 3
+            locate point 6
+            locate point 2
+7 11
+            locate point 3
+            locate point 6
+            locate point 2
+7 12
+            locate point 3
+            locate point 6
+            locate point 2
+7 13
+            locate point 3
+            locate point 6
+            locate point 2
+7 14
+            locate point 3
+            locate point 6
+            locate point 2
+7 15
+            locate point 3
+            locate point 6
+            locate point 2
+7 16
+            locate point 3
+            locate point 6
+        create point 5
+        create point 3
+        create point 4
+            locate point 1
+            locate point 2
+8 0
+            locate point 3
+            locate point 6
+            locate point 2
+8 1
+            locate point 3
+            locate point 6
+            locate point 2
+8 2
+            locate point 4
+            locate point 6
+            locate point 2
+8 3
+            locate point 3
+            locate point 6
+            locate point 2
+8 4
+            locate point 3
+            locate point 6
+            locate point 2
+8 5
+            locate point 3
+            locate point 6
+            locate point 2
+8 6
+            locate point 3
+            locate point 6
+            locate point 2
+8 7
+            locate point 3
+            locate point 6
+            locate point 2
+8 8
+            locate point 3
+            locate point 6
+            locate point 2
+8 9
+            locate point 3
+            locate point 6
+            locate point 2
+8 10
+            locate point 3
+            locate point 6
+            locate point 2
+8 11
+            locate point 3
+            locate point 6
+            locate point 2
+8 12
+            locate point 3
+            locate point 6
+            locate point 2
+8 13
+            locate point 3
+            locate point 6
+            locate point 2
+8 14
+            locate point 3
+            locate point 6
+            locate point 2
+8 15
+            locate point 3
+            locate point 6
+            locate point 2
+8 16
+            locate point 3
+            locate point 6
+        create point 5
+        create point 3
+        create point 4
+            locate point 1
+            locate point 2
+9 0
+            locate point 3
+            locate point 6
+            locate point 2
+9 1
+            locate point 3
+            locate point 6
+            locate point 2
+9 2
+            locate point 3
+            locate point 6
+            locate point 2
+9 3
+            locate point 3
+            locate point 6
+            locate point 2
+9 4
+            locate point 3
+            locate point 6
+            locate point 2
+9 5
+            locate point 3
+            locate point 6
+            locate point 2
+9 6
+            locate point 3
+            locate point 6
+            locate point 2
+9 7
+            locate point 3
+            locate point 6
+            locate point 2
+9 8
+            locate point 3
+            locate point 6
+            locate point 2
+9 9
+            locate point 3
+            locate point 6
+            locate point 2
+9 10
+            locate point 3
+            locate point 6
+            locate point 2
+9 11
+            locate point 3
+            locate point 6
+            locate point 2
+9 12
+            locate point 3
+            locate point 6
+            locate point 2
+9 13
+            locate point 3
+            locate point 6
+            locate point 2
+9 14
+            locate point 3
+            locate point 6
+            locate point 2
+9 15
+            locate point 3
+            locate point 6
+            locate point 2
+9 16
+            locate point 3
+            locate point 6
+        create point 5
+        create point 3
+        create point 4
+            locate point 1
+            locate point 2
+10 0
+            locate point 3
+            locate point 6
+            locate point 2
+10 1
+            locate point 3
+            locate point 6
+            locate point 2
+10 2
+            locate point 3
+            locate point 6
+            locate point 2
+10 3
+            locate point 3
+            locate point 6
+            locate point 2
+10 4
+            locate point 3
+            locate point 6
+            locate point 2
+10 5
+            locate point 3
+            locate point 6
+            locate point 2
+10 6
+            locate point 3
+            locate point 6
+            locate point 2
+10 7
+            locate point 3
+            locate point 6
+            locate point 2
+10 8
+            locate point 3
+            locate point 6
+            locate point 2
+10 9
+            locate point 3
+            locate point 6
+            locate point 2
+10 10
+            locate point 3
+            locate point 6
+            locate point 2
+10 11
+            locate point 3
+            locate point 6
+            locate point 2
+10 12
+            locate point 3
+            locate point 6
+            locate point 2
+10 13
+            locate point 3
+            locate point 6
+            locate point 2
+10 14
+            locate point 3
+            locate point 6
+            locate point 2
+10 15
+            locate point 3
+            locate point 6
+            locate point 2
+10 16
+            locate point 3
+            locate point 6
+        create point 5
+        create point 3
+        create point 4
+            locate point 1
+            locate point 2
+11 0
+            locate point 3
+            locate point 6
+            locate point 2
+11 1
+            locate point 3
+            locate point 6
+            locate point 2
+11 2
+            locate point 3
+            locate point 6
+            locate point 2
+11 3
+            locate point 3
+            locate point 6
+            locate point 2
+11 4
+            locate point 3
+            locate point 6
+            locate point 2
+11 5
+            locate point 3
+            locate point 6
+            locate point 2
+11 6
+            locate point 3
+            locate point 6
+            locate point 2
+11 7
+            locate point 3
+            locate point 6
+            locate point 2
+11 8
+            locate point 3
+            locate point 6
+            locate point 2
+11 9
+            locate point 3
+            locate point 6
+            locate point 2
+11 10
+            locate point 3
+            locate point 6
+            locate point 2
+11 11
+            locate point 3
+            locate point 6
+            locate point 2
+11 12
+            locate point 3
+            locate point 6
+            locate point 2
+11 13
+            locate point 3
+            locate point 6
+            locate point 2
+11 14
+            locate point 3
+            locate point 6
+            locate point 2
+11 15
+            locate point 3
+            locate point 6
+            locate point 2
+11 16
+            locate point 3
+            locate point 6
+        create point 5
+        create point 3
+        create point 4
+            locate point 1
+            locate point 2
+12 0
+            locate point 3
+            locate point 6
+            locate point 2
+12 1
+            locate point 3
+            locate point 6
+            locate point 2
+12 2
+            locate point 3
+            locate point 6
+            locate point 2
+12 3
+            locate point 3
+            locate point 6
+            locate point 2
+12 4
+            locate point 3
+            locate point 6
+            locate point 2
+12 5
+            locate point 3
+            locate point 6
+            locate point 2
+12 6
+            locate point 3
+            locate point 6
+            locate point 2
+12 7
+            locate point 3
+            locate point 6
+            locate point 2
+12 8
+            locate point 3
+            locate point 6
+            locate point 2
+12 9
+            locate point 3
+            locate point 6
+            locate point 2
+12 10
+            locate point 3
+            locate point 6
+            locate point 2
+12 11
+            locate point 3
+            locate point 6
+            locate point 2
+12 12
+            locate point 3
+            locate point 6
+            locate point 2
+12 13
+            locate point 3
+            locate point 6
+            locate point 2
+12 14
+            locate point 5
+            locate point 6
+            locate point 2
+12 15
+            locate point 3
+            locate point 6
+            locate point 2
+12 16
+            locate point 3
+            locate point 6
+        create point 5
+        create point 3
+        create point 4
+            locate point 1
+            locate point 2
+13 0
+            locate point 3
+            locate point 6
+            locate point 2
+13 1
+            locate point 3
+            locate point 6
+            locate point 2
+13 2
+            locate point 3
+            locate point 6
+            locate point 2
+13 3
+            locate point 3
+            locate point 6
+            locate point 2
+13 4
+            locate point 3
+            locate point 6
+            locate point 2
+13 5
+            locate point 3
+            locate point 6
+            locate point 2
+13 6
+            locate point 3
+            locate point 6
+            locate point 2
+13 7
+            locate point 3
+            locate point 6
+            locate point 2
+13 8
+            locate point 3
+            locate point 6
+            locate point 2
+13 9
+            locate point 3
+            locate point 6
+            locate point 2
+13 10
+            locate point 3
+            locate point 6
+            locate point 2
+13 11
+            locate point 3
+            locate point 6
+            locate point 2
+13 12
+            locate point 3
+            locate point 6
+            locate point 2
+13 13
+            locate point 3
+            locate point 6
+            locate point 2
+13 14
+            locate point 3
+            locate point 6
+            locate point 2
+13 15
+            locate point 3
+            locate point 6
+            locate point 2
+13 16
+            locate point 3
+            locate point 6
+        create point 5
+        create point 3
+        create point 4
+            locate point 1
+            locate point 2
+14 0
+            locate point 3
+            locate point 6
+            locate point 2
+14 1
+            locate point 3
+            locate point 6
+            locate point 2
+14 2
+            locate point 3
+            locate point 6
+            locate point 2
+14 3
+            locate point 3
+            locate point 6
+            locate point 2
+14 4
+            locate point 3
+            locate point 6
+            locate point 2
+14 5
+            locate point 3
+            locate point 6
+            locate point 2
+14 6
+            locate point 3
+            locate point 6
+            locate point 2
+14 7
+            locate point 3
+            locate point 6
+            locate point 2
+14 8
+            locate point 3
+            locate point 6
+            locate point 2
+14 9
+            locate point 3
+            locate point 6
+            locate point 2
+14 10
+            locate point 3
+            locate point 6
+            locate point 2
+14 11
+            locate point 3
+            locate point 6
+            locate point 2
+14 12
+            locate point 3
+            locate point 6
+            locate point 2
+14 13
+            locate point 3
+            locate point 6
+            locate point 2
+14 14
+            locate point 3
+            locate point 6
+            locate point 2
+14 15
+            locate point 3
+            locate point 6
+            locate point 2
+14 16
+            locate point 3
+            locate point 6
+        create point 5
+        create point 6
+heat point 2
+heat point 3
+heat point 4
+    main point 4
+    		place point 1
+    			find place point 1
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    				try place point 1
+    				try place point 3
+    			find place point 6
+    		place point 2
+    		place point 3
+
+
+RESULT:
+0 0
+    main point 5
+    		free point 1
+    		free point 2
+    			free board point 1
+.................
+.................
+.................
+.................
+.................
+.................
+.................
+.................
+..O..............
+.................
+.................
+.................
+..............X..
+.................
+.................
+
+    			free board point 1.1
+000 .................
+    			free board point 2
+    			free board point 1.1
+001 .................
+    			free board point 2
+    			free board point 1.1
+002 .................
+    			free board point 2
+    			free board point 1.1
+003 .................
+    			free board point 2
+    			free board point 1.1
+004 .................
+    			free board point 2
+    			free board point 1.1
+005 .................
+    			free board point 2
+    			free board point 1.1
+006 .................
+    			free board point 2
+    			free board point 1.1
+007 .................
+    			free board point 2
+    			free board point 1.1
+008 ..O..............
+    			free board point 2
+    			free board point 1.1
+009 .................
+    			free board point 2
+    			free board point 1.1
+010 .................
+    			free board point 2
+    			free board point 1.1
+011 .................
+    			free board point 2
+    			free board point 1.1
+012 ..............X..
+    			free board point 2
+    			free board point 1.1
+013 .................
+    			free board point 2
+    			free board point 1.1
+014 .................
+    			free board point 2
+    			free board point 3
+    			free board point 4
+    		free point 3
+    		free point 4
+    main point 6
+0 0
+    		print point 1

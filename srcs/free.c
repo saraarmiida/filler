@@ -30,7 +30,7 @@ void	free_token(char **token, int h)
 		i++;
 	}
 	print_to_file("    			free token point 3");
-	free(token);
+	// free(token);
 	print_to_file("    			free token point 4");
 }
 
@@ -55,7 +55,7 @@ void	free_board(const char **token, int h, int w)
 		i++;
 	}
 	print_to_file("    			free board point 3");
-	free(token);
+	// free(token);
 	print_to_file("    			free board point 4");
 }
 
