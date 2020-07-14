@@ -6,7 +6,7 @@
 /*   By: spentti <spentti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 17:35:11 by spentti           #+#    #+#             */
-/*   Updated: 2020/03/06 16:22:10 by spentti          ###   ########.fr       */
+/*   Updated: 2020/07/14 18:19:31 by spentti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	print_int_to_file(int i, int a)
 	fclose(fd);
 }
 
-void		print_res_to_file(t_point res)
+void	print_res_to_file(t_point res)
 {
 	FILE	*fd;
 
@@ -41,11 +41,11 @@ void		print_res_to_file(t_point res)
 	fclose(fd);
 }
 
-void		print_heat(t_info *i)
+void	print_heat(t_info *i)
 {
 	FILE	*fd;
-	int y;
-	int x;
+	int		y;
+	int		x;
 
 	fd = fopen("filler_log.txt", "a+");
 	y = 0;
@@ -64,10 +64,10 @@ void		print_heat(t_info *i)
 	fclose(fd);
 }
 
-void		print_map(const char **map, int h)
+void	print_map(const char **map, int h)
 {
 	FILE	*fd;
-	int y;
+	int		y;
 
 	fd = fopen("filler_log.txt", "a+");
 	y = 0;

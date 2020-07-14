@@ -6,7 +6,7 @@
 /*   By: spentti <spentti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 13:20:28 by spentti           #+#    #+#             */
-/*   Updated: 2020/06/10 16:18:40 by spentti          ###   ########.fr       */
+/*   Updated: 2020/07/14 18:03:28 by spentti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,12 +106,8 @@ static void	count_heat_map(t_info *i)
 
 int			heat_map(t_info *i)
 {
-	print_to_file("heat1");
 	create_heat_map(i);
-	print_to_file("heat2");
 	init_heat_map(i);
-	print_to_file("heat3");
 	count_heat_map(i);
-	print_to_file("heat4");
 	return (0);
 }

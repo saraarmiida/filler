@@ -6,16 +6,16 @@
 /*   By: spentti <spentti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 18:35:11 by spentti           #+#    #+#             */
-/*   Updated: 2020/03/06 17:43:56 by spentti          ###   ########.fr       */
+/*   Updated: 2020/07/14 18:28:56 by spentti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FILLER_H
 # define FILLER_H
 
-#include <stdlib.h>
-#include "../libft/ft_printf/includes/ft_printf.h"
-#include "../libft/libft/includes/libft.h"
+# include <stdlib.h>
+# include "../libft/ft_printf/includes/ft_printf.h"
+# include "../libft/libft/includes/libft.h"
 
 typedef struct	s_point
 {
@@ -48,11 +48,11 @@ typedef struct	s_info
 	int			first_time;
 }				t_info;
 
+int				read_input(t_info *i);
+int				read_map(t_info *i, char *line);
 int				heat_map(t_info *i);
 void			place(t_info *i);
 int				is_around(t_info *i, int x, int y, int a);
-int				read_map(t_info *info, char *line);
-int				read_piece(t_info *info, char *line);
 void			free_all(t_info *i);
 
 void			print_map(const char **map, int h);

@@ -3,9 +3,11 @@ LIBNAME = libft.a
 LIBFT = ../libft                                                                            
 FLAGS = -Wall -Wextra -Werror
 FRAME = -framework OpenGL -framework AppKit
-LIB = -L /usr/local/lib -lmlx -I /usr/local/X11/include -L /usr/X11/lib -lX11 -lXext
-SRC = srcs/*.c
-
+LIB = -L minilibx/ -lmlx
+SRC = srcs/main.c \
+		srcs/draw.c \
+		srcs/read_input.c  \
+		srcs/test.c
 
 all: $(NAME)
 

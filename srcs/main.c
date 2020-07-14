@@ -6,9 +6,15 @@
 /*   By: spentti <spentti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 19:07:39 by spentti           #+#    #+#             */
-/*   Updated: 2020/06/10 16:05:59 by spentti          ###   ########.fr       */
+/*   Updated: 2020/07/14 18:33:44 by spentti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+
+// - visualizer base done, i suspect it doesnt work because filler doesnt work
+// - filler timeout
+// - cleaned filler input reading, might cause some problems
+// - checked norminette on both filler & visualizer
 
 #include "../includes/filler.h"
 #include <fcntl.h>
@@ -16,13 +22,10 @@
 
 static void	print_result(int y, int x)
 {
-	print_to_file("    		print point 1");
 	ft_putnbr(y);
 	ft_putchar(' ');
-	print_to_file("    		print point 2");
 	ft_putnbr(x);
 	ft_putchar('\n');
-	print_to_file("    		print point 3");
 }
 
 static int	get_player(t_info *i)
@@ -46,36 +49,6 @@ static int	get_player(t_info *i)
 	return (0);
 }
 
-int			read_input(t_info *i)
-{
-	char	*line;
-	int		counter; 
-
-	line = NULL;
-	counter = 0;
-	while (counter < 2 && get_next_line(i->fd, &line) > 0)
-	{
-		if (ft_strncmp(line, "Plateau", 7) == 0 && i->first_time != 1)
-		{
-			if (read_map(i, line))
-				return (1);
-			counter++;
-		}
-		else if (ft_strncmp(line, "Piece", 5) == 0)
-		{
-			if (read_piece(i, line))
-				return (1);
-			counter++;
-		}
-		if (i->first_time == 1)
-		{
-			i->first_time = 0;
-			counter++;
-		}
-	}
-	return (0);
-}
-
 int			init_map(t_info *i)
 {
 	char	*line;
@@ -83,7 +56,8 @@ int			init_map(t_info *i)
 	if (get_next_line(i->fd, &line) > 0 && ft_strncmp(line, "Plateau", 7) == 0)
 	{
 		get_token_size(&i->board_h, &i->board_w, line);
-		if (!(i->board = (const char **)malloc(sizeof(char *) * (i->board_h + 1))))
+		i->board = (const char **)malloc(sizeof(char *) * (i->board_h + 1));
+		if (!i->board)
 			return (1);
 		if (read_map(i, line))
 			return (1);
@@ -126,17 +100,11 @@ int			main(void)
 	{
 		if (read_input(info))
 			return (1);
-		print_to_file("main1");
 		heat_map(info);
-		print_to_file("main2");
 		place(info);
-		print_to_file("main3");
 		free_all(info);
-		print_to_file("main4");
 		print_res_to_file(info->res);
-		print_to_file("main5");
 		print_result(info->res.y, info->res.x);
-		print_to_file("main6");
 	}
 	return (0);
 }
