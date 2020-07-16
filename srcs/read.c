@@ -6,7 +6,7 @@
 /*   By: spentti <spentti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 14:43:00 by spentti           #+#    #+#             */
-/*   Updated: 2020/07/14 18:18:15 by spentti          ###   ########.fr       */
+/*   Updated: 2020/07/16 18:37:24 by spentti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,26 +19,6 @@ void	get_token_size(int *h, int *w, char *line)
 	off = ft_strncmp(line, "Plateau", 7) == 0 ? 8 : 6;
 	*h = ft_atoi(&line[off]);
 	*w = ft_atoi(line + off + ft_intlen(*h) + 1);
-}
-
-int		read_map(t_info *i, char *line)
-{
-	int			k;
-
-	ft_strdel(&line);
-	get_next_line(i->fd, &line);
-	ft_strdel(&line);
-	k = 0;
-	while (k < i->board_h)
-	{
-		get_next_line(i->fd, &line);
-		i->board[k] = line + 4;
-		k++;
-	}
-	i->board[k] = NULL;
-	if (!i->board)
-		return (1);
-	return (0);
 }
 
 void	find_offset(t_info *i)
@@ -65,46 +45,84 @@ void	find_offset(t_info *i)
 	}
 }
 
-int		read_piece(t_info *i, char *line)
+static void			get_map(t_info *i)
 {
 	int		k;
+	char	*line;
 
-	get_token_size(&i->piece_h, &i->piece_w, line);
-	ft_strdel(&line);
-	if (!(i->piece = (char **)malloc(sizeof(char *) * (i->piece_h + 1))))
-		return (1);
 	k = 0;
+	get_next_line(i->fd, &line);
+	ft_strdel(&line);
+	i->board = (const char**)malloc(sizeof(char*) * i->board_h + 1);
+	while (k < i->board_h && get_next_line(i->fd, &line) == 1)
+	{
+		i->board[k] = line + 4;
+		// ft_strdel(&line);
+		k++;
+	}
+	i->board[k] = NULL;
+}
+
+static void			get_piece(t_info *i)
+{
+	int		k;
+	char	*line;
+
+	k = 0;
+	i->piece = (char**)malloc(sizeof(char*) * i->piece_h + 1);
 	while (k < i->piece_h)
 	{
 		get_next_line(i->fd, &line);
-		i->piece[k] = ft_strdup(line);
-		ft_strdel(&line);
+		// print_to_file("1:");
+		print_to_file(line);
+		// print_to_file("\n");
+		i->piece[k] = ft_strdup((const char*)line);
+		// print_to_file("2:");
+		print_to_file(i->piece[k]);
+		// print_to_file("\n");
 		k++;
+		ft_strdel(&line);
 	}
 	i->piece[k] = NULL;
-	if (!i->piece)
-		return (1);
-	find_offset(i);
-	return (0);
 }
 
-int		read_input(t_info *i)
+void				read_map(t_info *i, char *line)
+{
+	get_token_size(&i->board_h, &i->board_w, line);
+	get_map(i);
+}
+
+void				read_piece(t_info *i, char *line)
+{
+	get_token_size(&i->piece_h, &i->piece_w, line);
+	get_piece(i);
+	find_offset(i);
+}
+
+int				read_input(t_info *i)
 {
 	char	*line;
 
+	print_to_file("MIKA NYT VITTU");
 	line = NULL;
 	while (get_next_line(i->fd, &line) == 1)
 	{
-		if (ft_strncmp(line, "Plateau", 7) == 0)
+		print_to_file("NYT PERKELE");
+		print_to_file(line);
+		if (ft_strncmp(line, "Plateau", 6) == 0)
 		{
-			if (read_map(i, line))
-				return (1);
+			read_map(i, line);
+			ft_strdel(&line);
 		}
-		else if (ft_strncmp(line, "Piece", 5) == 0)
+		else if (ft_strncmp("Piece", line, 4) == 0)
 		{
-			if (read_piece(i, line))
-				return (1);
+			print_to_file("READING PIECE");
+			read_piece(i, line);
+			print_map((const char **)i->piece, i->piece_h);
+			return (1);
 		}
+		else
+			ft_strdel(&line);
 	}
 	return (0);
 }

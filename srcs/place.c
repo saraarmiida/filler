@@ -6,7 +6,7 @@
 /*   By: spentti <spentti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/28 10:05:05 by spentti           #+#    #+#             */
-/*   Updated: 2020/07/14 18:14:25 by spentti          ###   ########.fr       */
+/*   Updated: 2020/07/16 18:27:52 by spentti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int		count_score(t_info *i, int x, int y)
 
 	yp = i->piece_off.y;
 	score = 0;
+	// print_to_file("count_score1");
 	while (yp < i->piece_h)
 	{
 		xp = i->piece_off.x;
@@ -48,14 +49,19 @@ int		try_place(t_info *i, int x, int y)
 	xb = x;
 	yb = y;
 	overlap = 0;
+	// print_to_file("try_place1");
 	while (yp < i->piece_h)
 	{
 		xp = i->piece_off.x;
 		xb = x;
 		while (xp < i->piece_w)
 		{
+			// print_to_file("try_place2");
+			// print_int_to_file(yp, xp);
+			// print_map((const char **)i->piece, i->piece_h);
 			if (i->piece[yp][xp] == '*')
 			{
+				// print_to_file("try_place3");
 				if (yb >= i->board_h)
 					return (1);
 				if (xb >= i->board_w)
@@ -71,6 +77,7 @@ int		try_place(t_info *i, int x, int y)
 		yb++;
 		yp++;
 	}
+	// print_to_file("try_place4");
 	if (overlap != 1)
 		return (1);
 	return (0);
@@ -85,6 +92,7 @@ void	find_place(t_info *i)
 
 	y = 0;
 	min_score = 0;
+	print_to_file("find_place1");
 	while (y < i->board_h)
 	{
 		x = 0;
@@ -110,6 +118,7 @@ void	find_place(t_info *i)
 		}
 		y++;
 	}
+	print_to_file("find_place2");
 }
 
 void	place(t_info *i)

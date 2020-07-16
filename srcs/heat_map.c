@@ -6,7 +6,7 @@
 /*   By: spentti <spentti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 13:20:28 by spentti           #+#    #+#             */
-/*   Updated: 2020/07/14 18:03:28 by spentti          ###   ########.fr       */
+/*   Updated: 2020/07/16 18:02:36 by spentti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,21 @@ static int	create_heat_map(t_info *i)
 	int	**map;
 
 	y = 0;
+	// print_to_file("			create_heat1");
 	if (!(map = (int **)malloc(sizeof(int *) * i->board_h)))
 		return (1);
+	// print_to_file("			create_heat2");
 	while (y < i->board_h)
 	{
+		// print_to_file("			create_heat3");
 		if (!(map[y] = (int *)malloc(sizeof(int) * i->board_w)))
 			return (1);
+		print_to_file("			create_heat4");
 		locate_players(&y, i, map);
+		// print_to_file("			create_heat5");
 		y++;
 	}
+	// print_to_file("			create_heat6");
 	i->hmap = map;
 	return (0);
 }
@@ -106,8 +112,12 @@ static void	count_heat_map(t_info *i)
 
 int			heat_map(t_info *i)
 {
+	print_to_file("			heat1");
 	create_heat_map(i);
+	// print_to_file("			heat2");
 	init_heat_map(i);
+	// print_to_file("			heat3");
 	count_heat_map(i);
+	// print_to_file("			heat4");
 	return (0);
 }

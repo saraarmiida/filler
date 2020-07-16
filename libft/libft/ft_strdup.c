@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spentti <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: spentti <spentti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 13:20:36 by spentti           #+#    #+#             */
-/*   Updated: 2019/10/25 11:41:21 by spentti          ###   ########.fr       */
+/*   Updated: 2020/07/16 13:33:33 by spentti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*ft_strdup(const char *str)
 	int		i;
 
 	i = 0;
-	if (!(dup = (char *)malloc(sizeof(char) * (ft_strlen(str) + 1))))
+	if (!(dup = ft_strnew(ft_strlen(str))))
 		return (NULL);
 	while (str[i] != '\0')
 	{

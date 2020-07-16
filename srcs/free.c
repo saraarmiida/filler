@@ -15,19 +15,18 @@ void	free_int_arr(int **arr, int h)
 	free(arr);
 }
 
-void	free_token(char **token, int h)
+void	free_token(char **str)
 {
 	int		i;
 
-	if (!token)
-		return ;
 	i = 0;
-	while (i < h)
+	while (str[i] != NULL)
 	{
-		ft_strdel(&token[i]);
+		ft_strdel(&str[i]);
 		i++;
 	}
-	// free(token);
+	free(str);
+	str = NULL;
 }
 
 void	free_board(const char **token, int h, int w)
@@ -45,12 +44,16 @@ void	free_board(const char **token, int h, int w)
 			ft_strdel(&str);
 		i++;
 	}
-	// free(token);
+	free(token);
 }
 
 void	free_all(t_info *i)
 {
 	free_int_arr(i->hmap, i->board_h);
+	print_to_file("heat freed");
+	print_map(i->board, i->board_h);
 	free_board(i->board, i->board_h, i->board_w);
-	free_token(i->piece, i->piece_h);
+	print_to_file("board freed");
+	free_token(i->piece);
+	print_to_file("piece freed");
 }

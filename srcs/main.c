@@ -6,7 +6,7 @@
 /*   By: spentti <spentti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 19:07:39 by spentti           #+#    #+#             */
-/*   Updated: 2020/07/14 18:33:44 by spentti          ###   ########.fr       */
+/*   Updated: 2020/07/16 18:39:10 by spentti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,11 @@
 // - filler timeout
 // - cleaned filler input reading, might cause some problems
 // - checked norminette on both filler & visualizer
+
+// problems:
+// - segfault at create heat 4
+// - segfault at hello3 reason: piece not read correctly (null) because: doesn't go to loop of reading in read_input
+// - malloc, pointer being freed was not allocated (free_all map) (fixed in read_map)
 
 #include "../includes/filler.h"
 #include <fcntl.h>
@@ -39,31 +44,9 @@ static int	get_player(t_info *i)
 	{
 		i->player.id = (line[10] == '1' ? 'O' : 'X');
 		i->enemy.id = (line[10] == '2' ? 'O' : 'X');
-		ft_strdel(&line);
 	}
-	else
-	{
-		ft_strdel(&line);
-		return (1);
-	}
+	ft_strdel(&line);
 	return (0);
-}
-
-int			init_map(t_info *i)
-{
-	char	*line;
-
-	if (get_next_line(i->fd, &line) > 0 && ft_strncmp(line, "Plateau", 7) == 0)
-	{
-		get_token_size(&i->board_h, &i->board_w, line);
-		i->board = (const char **)malloc(sizeof(char *) * (i->board_h + 1));
-		if (!i->board)
-			return (1);
-		if (read_map(i, line))
-			return (1);
-		return (0);
-	}
-	return (1);
 }
 
 void		init_struct(t_info *i)
@@ -94,17 +77,21 @@ int			main(void)
 	init_struct(info);
 	if (get_player(info))
 		return (1);
-	if (init_map(info))
-		return (1);
 	while (1)
 	{
-		if (read_input(info))
-			return (1);
+		print_to_file("hello1");
+		read_input(info);
+		print_to_file("hello2");
 		heat_map(info);
+		print_to_file("hello3");
 		place(info);
+		print_to_file("hello4");
 		free_all(info);
+		print_to_file("hello5");
 		print_res_to_file(info->res);
+		print_to_file("hello6");
 		print_result(info->res.y, info->res.x);
+		print_to_file("hello7");
 	}
 	return (0);
 }
