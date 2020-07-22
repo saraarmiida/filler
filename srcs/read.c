@@ -6,13 +6,13 @@
 /*   By: spentti <spentti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 14:43:00 by spentti           #+#    #+#             */
-/*   Updated: 2020/07/16 18:37:24 by spentti          ###   ########.fr       */
+/*   Updated: 2020/07/22 18:33:46 by spentti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/filler.h"
 
-void	get_token_size(int *h, int *w, char *line)
+void		get_token_size(int *h, int *w, char *line)
 {
 	int		off;
 
@@ -21,7 +21,7 @@ void	get_token_size(int *h, int *w, char *line)
 	*w = ft_atoi(line + off + ft_intlen(*h) + 1);
 }
 
-void	find_offset(t_info *i)
+void		find_offset(t_info *i)
 {
 	int	y;
 	int	x;
@@ -45,7 +45,7 @@ void	find_offset(t_info *i)
 	}
 }
 
-static void			get_map(t_info *i)
+static void	get_map(t_info *i)
 {
 	int		k;
 	char	*line;
@@ -63,7 +63,7 @@ static void			get_map(t_info *i)
 	i->board[k] = NULL;
 }
 
-static void			get_piece(t_info *i)
+static void	get_piece(t_info *i)
 {
 	int		k;
 	char	*line;
@@ -73,42 +73,34 @@ static void			get_piece(t_info *i)
 	while (k < i->piece_h)
 	{
 		get_next_line(i->fd, &line);
-		// print_to_file("1:");
-		print_to_file(line);
-		// print_to_file("\n");
 		i->piece[k] = ft_strdup((const char*)line);
-		// print_to_file("2:");
-		print_to_file(i->piece[k]);
-		// print_to_file("\n");
 		k++;
 		ft_strdel(&line);
 	}
 	i->piece[k] = NULL;
 }
 
-void				read_map(t_info *i, char *line)
+void		read_map(t_info *i, char *line)
 {
 	get_token_size(&i->board_h, &i->board_w, line);
 	get_map(i);
 }
 
-void				read_piece(t_info *i, char *line)
+void		read_piece(t_info *i, char *line)
 {
 	get_token_size(&i->piece_h, &i->piece_w, line);
 	get_piece(i);
 	find_offset(i);
 }
 
-int				read_input(t_info *i)
+int			read_input(t_info *i)
 {
 	char	*line;
+	int		y;
 
-	print_to_file("MIKA NYT VITTU");
-	line = NULL;
-	while (get_next_line(i->fd, &line) == 1)
+	y = get_next_line(0, &line);
+	while (y > 0)
 	{
-		print_to_file("NYT PERKELE");
-		print_to_file(line);
 		if (ft_strncmp(line, "Plateau", 6) == 0)
 		{
 			read_map(i, line);
@@ -116,13 +108,13 @@ int				read_input(t_info *i)
 		}
 		else if (ft_strncmp("Piece", line, 4) == 0)
 		{
-			print_to_file("READING PIECE");
 			read_piece(i, line);
-			print_map((const char **)i->piece, i->piece_h);
+			ft_strdel(&line);
 			return (1);
 		}
 		else
 			ft_strdel(&line);
+		y = get_next_line(0, &line);
 	}
 	return (0);
 }
