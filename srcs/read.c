@@ -21,7 +21,7 @@ void		get_token_size(int *h, int *w, char *line)
 	*w = ft_atoi(line + off + ft_intlen(*h) + 1);
 }
 
-void		find_offset(t_info *i)
+int			find_offset(t_info *i)
 {
 	int	y;
 	int	x;
@@ -38,11 +38,13 @@ void		find_offset(t_info *i)
 			{
 				i->piece_off.y = (y < i->piece_off.y) ? y : i->piece_off.y;
 				i->piece_off.x = (x < i->piece_off.x) ? x : i->piece_off.x;
+				return(1);
 			}
 			x++;
 		}
 		y++;
 	}
+	return(0);
 }
 
 static void	get_map(t_info *i)
@@ -99,22 +101,28 @@ int			read_input(t_info *i)
 	int		y;
 
 	y = get_next_line(0, &line);
+	print_to_file("read1");
 	while (y > 0)
 	{
+		print_to_file("read2");
 		if (ft_strncmp(line, "Plateau", 6) == 0)
 		{
+			print_to_file("read3");
 			read_map(i, line);
 			ft_strdel(&line);
 		}
 		else if (ft_strncmp("Piece", line, 4) == 0)
 		{
+			print_to_file("read4");
 			read_piece(i, line);
+			print_to_file("read6");
 			ft_strdel(&line);
 			return (1);
 		}
 		else
 			ft_strdel(&line);
 		y = get_next_line(0, &line);
+		print_to_file("read5");
 	}
 	return (0);
 }

@@ -83,12 +83,12 @@ int		find_place(t_info *i)
 	int	score;
 	int	min_score;
 
-	y = 0;
+	y = 0 - i->piece_off.y;
 	min_score = 0;
-	score = -100;
+	score = -1;
 	while (y < i->board_h)
 	{
-		x = 0;
+		x = 0 - i->piece_off.x;
 		while (x < i->board_w)
 		{
 			if (try_place(i, x, y) == 0)
@@ -111,7 +111,7 @@ int		find_place(t_info *i)
 		}
 		y++;
 	}
-	if (score == -100)
+	if (score == -1)
 		return (1);
 	return (0);
 }
@@ -120,9 +120,12 @@ int		place(t_info *i)
 {
 	i->res.y = 0;
 	i->res.x = 0;
+	print_res_to_file(i->res);
+	print_to_file("hello");
 	if (find_place(i) == 1)
 		return (1);
 	i->res.x -= i->piece_off.x;
 	i->res.y -= i->piece_off.y;
+	print_res_to_file(i->res);
 	return (0);
 }

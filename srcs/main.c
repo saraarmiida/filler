@@ -80,12 +80,18 @@ int			main(void)
 		return (1);
 	while (1)
 	{
+		print_to_file("hello1");
 		read_input(info);
+		print_to_file("hello2");
 		heat_map(info);
+		print_to_file("hello3");
 		if (place(info) == 1)
 			exit(1);
+		print_to_file("hello4");
 		free_all(info);
+		print_to_file("hello5");
 		print_result(info->res.y, info->res.x);
+		print_to_file("hello6");
 	}
 	return (0);
 }

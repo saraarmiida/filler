@@ -12,6 +12,10 @@
 
 #include "../includes/filler.h"
 
+/*
+** Checks if there is a wanted integer 'a' anywhere around a point (x,y)
+*/
+
 int			is_around(t_info *i, int x, int y, int a)
 {
 	if (x + 1 < i->board_w && i->hmap[y][x + 1] == a)
