@@ -6,7 +6,7 @@
 /*   By: spentti <spentti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/28 10:05:05 by spentti           #+#    #+#             */
-/*   Updated: 2020/07/22 16:59:11 by spentti          ###   ########.fr       */
+/*   Updated: 2020/07/30 19:38:58 by spentti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int		count_score(t_info *i, int x, int y)
 	score = 0;
 	while (yp < i->piece_h)
 	{
-		xp = i->piece_off.x;
+		xp = 0;
 		while (xp < i->piece_w)
 		{
 			if (i->piece[yp][xp] == '*')
@@ -44,13 +44,13 @@ int		try_place(t_info *i, int x, int y)
 	int	yb;
 	int	overlap;
 
-	yp = i->piece_off.y;
+	yp = 0;
 	xb = x;
 	yb = y;
 	overlap = 0;
 	while (yp < i->piece_h)
 	{
-		xp = i->piece_off.x;
+		xp = 0;
 		xb = x;
 		while (xp < i->piece_w)
 		{
@@ -83,12 +83,12 @@ int		find_place(t_info *i)
 	int	score;
 	int	min_score;
 
-	y = 0;
+	y = 0 - i->piece_off.y;
 	min_score = 0;
-	score = -100;
+	score = -1;
 	while (y < i->board_h)
 	{
-		x = 0;
+		x = 0 - i->piece_off.x;
 		while (x < i->board_w)
 		{
 			if (try_place(i, x, y) == 0)
@@ -111,7 +111,7 @@ int		find_place(t_info *i)
 		}
 		y++;
 	}
-	if (score == -100)
+	if (score == -1)
 		return (1);
 	return (0);
 }
@@ -122,7 +122,5 @@ int		place(t_info *i)
 	i->res.x = 0;
 	if (find_place(i) == 1)
 		return (1);
-	i->res.x -= i->piece_off.x;
-	i->res.y -= i->piece_off.y;
 	return (0);
 }

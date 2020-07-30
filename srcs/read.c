@@ -6,7 +6,7 @@
 /*   By: spentti <spentti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 14:43:00 by spentti           #+#    #+#             */
-/*   Updated: 2020/07/22 18:33:46 by spentti          ###   ########.fr       */
+/*   Updated: 2020/07/30 18:22:55 by spentti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void		get_token_size(int *h, int *w, char *line)
 	*w = ft_atoi(line + off + ft_intlen(*h) + 1);
 }
 
-void		find_offset(t_info *i)
+int			find_offset(t_info *i)
 {
 	int	y;
 	int	x;
@@ -34,15 +34,17 @@ void		find_offset(t_info *i)
 		x = 0;
 		while (x < i->piece_w)
 		{
-			if (i->piece[y][x] == '*')
+			if (i->piece[y][x] == '*' && y < i->piece_off.y)
 			{
-				i->piece_off.y = (y < i->piece_off.y) ? y : i->piece_off.y;
-				i->piece_off.x = (x < i->piece_off.x) ? x : i->piece_off.x;
+				i->piece_off.y = y;
+				i->piece_off.x = x;
+				return (0);
 			}
 			x++;
 		}
 		y++;
 	}
+	return (1);
 }
 
 static void	get_map(t_info *i)
@@ -96,10 +98,8 @@ void		read_piece(t_info *i, char *line)
 int			read_input(t_info *i)
 {
 	char	*line;
-	int		y;
 
-	y = get_next_line(0, &line);
-	while (y > 0)
+	while (get_next_line(0, &line) > 0)
 	{
 		if (ft_strncmp(line, "Plateau", 6) == 0)
 		{
@@ -114,7 +114,6 @@ int			read_input(t_info *i)
 		}
 		else
 			ft_strdel(&line);
-		y = get_next_line(0, &line);
 	}
 	return (0);
 }

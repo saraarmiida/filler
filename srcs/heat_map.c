@@ -6,7 +6,7 @@
 /*   By: spentti <spentti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 13:20:28 by spentti           #+#    #+#             */
-/*   Updated: 2020/07/22 16:33:35 by spentti          ###   ########.fr       */
+/*   Updated: 2020/07/30 18:00:41 by spentti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,47 +37,6 @@ static void	locate_players(int *y, t_info *i, int **map)
 	}
 }
 
-static int	create_heat_map(t_info *i)
-{
-	int	y;
-	int	**map;
-
-	y = 0;
-	if (!(map = (int **)malloc(sizeof(int *) * i->board_h)))
-		return (1);
-	while (y < i->board_h)
-	{
-		if (!(map[y] = (int *)malloc(sizeof(int) * i->board_w)))
-			return (1);
-		locate_players(&y, i, map);
-		y++;
-	}
-	i->hmap = map;
-	return (0);
-}
-
-static void	init_heat_map(t_info *i)
-{
-	int	x;
-	int y;
-
-	y = 0;
-	while (y < i->board_h)
-	{
-		x = 0;
-		while (x < i->board_w)
-		{
-			if (i->hmap[y][x] == 0)
-			{
-				if (is_around(i, x, y, -1))
-					i->hmap[y][x] += 1;
-			}
-			x++;
-		}
-		y++;
-	}
-}
-
 static void	count_heat_map(t_info *i)
 {
 	int	x;
@@ -102,6 +61,47 @@ static void	count_heat_map(t_info *i)
 		}
 		a++;
 	}
+}
+
+static void	init_heat_map(t_info *i)
+{
+	int	x;
+	int y;
+
+	y = 0;
+	while (y < i->board_h)
+	{
+		x = 0;
+		while (x < i->board_w)
+		{
+			if (i->hmap[y][x] == 0)
+			{
+				if (is_around(i, x, y, -1))
+					i->hmap[y][x] += 1;
+			}
+			x++;
+		}
+		y++;
+	}
+}
+
+static int	create_heat_map(t_info *i)
+{
+	int	y;
+	int	**map;
+
+	y = 0;
+	if (!(map = (int **)malloc(sizeof(int *) * i->board_h)))
+		return (1);
+	while (y < i->board_h)
+	{
+		if (!(map[y] = (int *)malloc(sizeof(int) * i->board_w)))
+			return (1);
+		locate_players(&y, i, map);
+		y++;
+	}
+	i->hmap = map;
+	return (0);
 }
 
 int			heat_map(t_info *i)

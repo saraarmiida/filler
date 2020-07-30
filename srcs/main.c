@@ -6,20 +6,14 @@
 /*   By: spentti <spentti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 19:07:39 by spentti           #+#    #+#             */
-/*   Updated: 2020/07/22 18:31:49 by spentti          ###   ########.fr       */
+/*   Updated: 2020/07/30 19:51:07 by spentti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
 ** problems:
-** - segfault at create heat 4
-**		-> fixed, reason: doesn't give correct coordinates
-**			(offset is not taken into consideration)
-** - segfault when no possible places to put piece in
-**		-> fixed, exit from infinite loop
-** - sometimes malloc errors
-** - sometimes doesn't find possible coordinates
-** - sometimes gives wrong coordinates
+** 30.7
+** - exits (doesnt find cooordinates) for no reason
 */
 
 #include "../includes/filler.h"
@@ -82,8 +76,13 @@ int			main(void)
 	{
 		read_input(info);
 		heat_map(info);
+		print_int_to_file(info->piece_off.y, info->piece_off.x);
 		if (place(info) == 1)
+		{
+			/* add freeing everything here */
 			exit(1);
+		}
+		print_res_to_file(info->res);
 		free_all(info);
 		print_result(info->res.y, info->res.x);
 	}
