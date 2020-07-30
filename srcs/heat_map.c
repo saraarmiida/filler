@@ -20,19 +20,13 @@ static void	locate_players(int *y, t_info *i, int **map)
 	while (x < i->board_w)
 	{
 		if (i->board[*y][x] == '.')
-		{
 			map[*y][x] = 0;
-		}
 		else if (i->board[*y][x] == i->player.id || \
 		i->board[*y][x] == i->player.id + 32)
-		{
 			map[*y][x] = -2;
-		}
 		else if (i->board[*y][x] == i->enemy.id || \
 		i->board[*y][x] == i->enemy.id + 32)
-		{
 			map[*y][x] = -1;
-		}
 		x++;
 	}
 }

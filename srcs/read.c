@@ -6,7 +6,7 @@
 /*   By: spentti <spentti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 14:43:00 by spentti           #+#    #+#             */
-/*   Updated: 2020/07/30 18:22:55 by spentti          ###   ########.fr       */
+/*   Updated: 2020/07/30 19:59:31 by spentti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,14 +101,18 @@ int			read_input(t_info *i)
 
 	while (get_next_line(0, &line) > 0)
 	{
+		print_to_file("read2");
 		if (ft_strncmp(line, "Plateau", 6) == 0)
 		{
+			print_to_file("read3");
 			read_map(i, line);
 			ft_strdel(&line);
 		}
 		else if (ft_strncmp("Piece", line, 4) == 0)
 		{
+			print_to_file("read4");
 			read_piece(i, line);
+			print_to_file("read6");
 			ft_strdel(&line);
 			return (1);
 		}

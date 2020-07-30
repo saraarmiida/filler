@@ -6,14 +6,14 @@
 /*   By: spentti <spentti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 19:07:39 by spentti           #+#    #+#             */
-/*   Updated: 2020/07/30 19:51:07 by spentti          ###   ########.fr       */
+/*   Updated: 2020/07/30 20:00:12 by spentti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
-** problems:
 ** 30.7
 ** - exits (doesnt find cooordinates) for no reason
+** - changed use of piece offset to allow giving minus coordinates
 */
 
 #include "../includes/filler.h"
