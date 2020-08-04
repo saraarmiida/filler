@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = players/spentti.filler
+NAME = spentti.filler
 
 LIBFT = libft/libft.a
 
