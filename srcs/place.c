@@ -6,7 +6,7 @@
 /*   By: spentti <spentti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/28 10:05:05 by spentti           #+#    #+#             */
-/*   Updated: 2020/07/30 19:58:45 by spentti          ###   ########.fr       */
+/*   Updated: 2020/08/05 17:45:40 by spentti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int		count_score(t_info *i, int x, int y)
 	int xp;
 	int yp;
 
-	yp = i->piece_off.y;
+	yp = 0;
 	score = 0;
 	while (yp < i->piece_h)
 	{
@@ -26,13 +26,13 @@ int		count_score(t_info *i, int x, int y)
 		while (xp < i->piece_w)
 		{
 			if (i->piece[yp][xp] == '*')
-				score += i->hmap[y][x];
+				score += i->hmap[y + yp][x + xp];
 			xp++;
-			x++;
 		}
 		yp++;
-		y++;
 	}
+	print_to_file("score:");
+	print_int_to_file(0, score);
 	return (score);
 }
 
@@ -40,40 +40,28 @@ int		try_place(t_info *i, int x, int y)
 {
 	int	xp;
 	int	yp;
-	int	xb;
-	int	yb;
 	int	overlap;
 
-	yp = 0;
-	xb = x;
-	yb = y;
+	yp = -1;
 	overlap = 0;
-	while (yp < i->piece_h)
+	while (++yp < i->piece_h)
 	{
-		xp = 0;
-		xb = x;
-		while (xp < i->piece_w)
+		xp = -1;
+		while (++xp < i->piece_w)
 		{
 			if (i->piece[yp][xp] == '*')
 			{
-				if (yb >= i->board_h)
-					return (1);
-				if (xb >= i->board_w)
-					return (1);
-				if (i->hmap[yb][xb] == -2)
+				if (y + yp >= i->board_h || x + xp >= i->board_w \
+				|| i->hmap[y + yp][x + xp] == -1)
+					return (-1000);
+				if (i->hmap[y + yp][x + xp] == -2)
 					overlap++;
-				if (i->hmap[yb][xb] == -1)
-					return (1);
 			}
-			xb++;
-			xp++;
 		}
-		yb++;
-		yp++;
 	}
 	if (overlap != 1)
-		return (1);
-	return (0);
+		return (-1000);
+	return (count_score(i, x, y));
 }
 
 int		find_place(t_info *i)
@@ -83,44 +71,39 @@ int		find_place(t_info *i)
 	int	score;
 	int	min_score;
 
-	y = 0 - i->piece_off.y;
+	y = -1;
 	min_score = 0;
-	score = -1;
-	while (y < i->board_h)
+	score = -1000;
+	while (++y < i->board_h)
 	{
-		x = 0 - i->piece_off.x;
-		while (x < i->board_w)
+		x = -1;
+		while (++x < i->board_w)
 		{
-			if (try_place(i, x, y) == 0)
+			score = try_place(i, x, y);
+			if (score != -1000)
 			{
 				score = count_score(i, x, y);
-				if (min_score == 0)
-				{
-					min_score = score;
-					i->res.y = y;
-					i->res.x = x;
-				}
-				else if (score < min_score)
+				if (min_score == 0 || score < min_score)
 				{
 					min_score = score;
 					i->res.y = y;
 					i->res.x = x;
 				}
 			}
-			x++;
 		}
-		y++;
 	}
-	if (score == -1)
-		return (1);
-	return (0);
+	return (score);
 }
 
 int		place(t_info *i)
 {
 	i->res.y = 0;
 	i->res.x = 0;
-	if (find_place(i) == 1)
+	print_heat(i);
+	print_map(i->board, i->board_h);
+	if (find_place(i) == -1000)
 		return (1);
+	i->res.y -= i->piece_off.y;
+	i->res.x -= i->piece_off.x;
 	return (0);
 }

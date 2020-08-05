@@ -6,7 +6,7 @@
 /*   By: spentti <spentti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 18:35:11 by spentti           #+#    #+#             */
-/*   Updated: 2020/07/22 18:41:55 by spentti          ###   ########.fr       */
+/*   Updated: 2020/08/05 17:17:09 by spentti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ int				heat_map(t_info *i);
 int				place(t_info *i);
 int				is_around(t_info *i, int x, int y, int a);
 void			free_all(t_info *i);
+void			free_token(char **str);
+void			trim_piece(t_info *i);
 
 void			print_map(const char **map, int h);
 void			print_to_file(char *format);

@@ -6,7 +6,7 @@
 /*   By: spentti <spentti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 17:35:11 by spentti           #+#    #+#             */
-/*   Updated: 2020/07/30 19:42:36 by spentti          ###   ########.fr       */
+/*   Updated: 2020/08/05 15:07:17 by spentti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	print_res_to_file(t_point res)
 	FILE	*fd;
 
 	fd = fopen("filler_log.txt", "a+");
-	fprintf(fd, "res: %d %d\n", res.y, res.x);
+	fprintf(fd, "result: %d %d\n", res.y, res.x);
 	fclose(fd);
 }
 

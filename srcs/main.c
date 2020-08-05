@@ -6,7 +6,7 @@
 /*   By: spentti <spentti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 19:07:39 by spentti           #+#    #+#             */
-/*   Updated: 2020/07/30 20:00:12 by spentti          ###   ########.fr       */
+/*   Updated: 2020/08/05 16:37:34 by spentti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,13 @@
 ** 30.7
 ** - exits (doesnt find cooordinates) for no reason
 ** - changed use of piece offset to allow giving minus coordinates
+** 5.8
+** - sometimes random line from previous map gets left on the first line of a map
 */
 
 #include "../includes/filler.h"
 #include <fcntl.h>
 #include <stdarg.h>
-
-static void	print_result(int y, int x)
-{
-	ft_putnbr(y);
-	ft_putchar(' ');
-	ft_putnbr(x);
-	ft_putchar('\n');
-}
 
 static int	get_player(t_info *i)
 {
@@ -76,15 +70,18 @@ int			main(void)
 	{
 		read_input(info);
 		heat_map(info);
-		print_int_to_file(info->piece_off.y, info->piece_off.x);
 		if (place(info) == 1)
 		{
-			/* add freeing everything here */
+			ft_printf("%d %d\n", info->res.y, info->res.x);
+			print_to_file("exiting...");
+			free_all(info);
+			free(info);
+			info = NULL;
 			exit(1);
 		}
 		print_res_to_file(info->res);
 		free_all(info);
-		print_result(info->res.y, info->res.x);
+		ft_printf("%d %d\n", info->res.y, info->res.x);
 	}
 	return (0);
 }
