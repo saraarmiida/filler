@@ -6,7 +6,7 @@
 /*   By: spentti <spentti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 19:07:39 by spentti           #+#    #+#             */
-/*   Updated: 2020/08/05 16:37:34 by spentti          ###   ########.fr       */
+/*   Updated: 2020/08/06 17:35:08 by spentti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,19 @@ int			main(void)
 		return (1);
 	while (1)
 	{
-		read_input(info);
+		print_to_file("\n\nSTARTING NEW ROUND\n\n");
+		if (read_input(info) == 0)
+		{
+			ft_printf("%d %d\n", info->res.y, info->res.x);
+			print_to_file("exiting because nothing to read...");
+			free_all(info);
+			free(info);
+			info = NULL;
+			exit(1);
+		}
+		// print_to_file(info->board[0]);
 		heat_map(info);
+		// print_to_file(info->board[0]);
 		if (place(info) == 1)
 		{
 			ft_printf("%d %d\n", info->res.y, info->res.x);
@@ -79,8 +90,9 @@ int			main(void)
 			info = NULL;
 			exit(1);
 		}
+		print_to_file("result printed at the end");
 		print_res_to_file(info->res);
-		free_all(info);
+		// free_all(info);
 		ft_printf("%d %d\n", info->res.y, info->res.x);
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: spentti <spentti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 13:20:28 by spentti           #+#    #+#             */
-/*   Updated: 2020/07/30 18:00:41 by spentti          ###   ########.fr       */
+/*   Updated: 2020/08/06 14:49:59 by spentti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,5 +103,6 @@ int			heat_map(t_info *i)
 	create_heat_map(i);
 	init_heat_map(i);
 	count_heat_map(i);
+	// free_token(i->board);
 	return (0);
 }

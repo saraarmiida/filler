@@ -6,7 +6,7 @@
 /*   By: spentti <spentti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 17:35:11 by spentti           #+#    #+#             */
-/*   Updated: 2020/08/05 15:07:17 by spentti          ###   ########.fr       */
+/*   Updated: 2020/08/06 14:14:12 by spentti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	print_heat(t_info *i)
 	fclose(fd);
 }
 
-void	print_map(const char **map, int h)
+void	print_map(char **map, int h)
 {
 	FILE	*fd;
 	int		y;

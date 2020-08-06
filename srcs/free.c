@@ -29,7 +29,7 @@ void	free_token(char **str)
 	str = NULL;
 }
 
-void	free_board(const char **token, int h, int w)
+void	free_board(char **token, int h, int w)
 {
 	int		i;
 	char	*str;

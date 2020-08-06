@@ -6,7 +6,7 @@
 /*   By: spentti <spentti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/28 10:05:05 by spentti           #+#    #+#             */
-/*   Updated: 2020/08/05 17:45:40 by spentti          ###   ########.fr       */
+/*   Updated: 2020/08/06 17:13:35 by spentti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int		count_score(t_info *i, int x, int y)
 		xp = 0;
 		while (xp < i->piece_w)
 		{
-			if (i->piece[yp][xp] == '*')
+			if (i->piece[yp][xp] == '*' && i->hmap[y + yp][x + xp] != -2)
 				score += i->hmap[y + yp][x + xp];
 			xp++;
 		}
@@ -72,7 +72,7 @@ int		find_place(t_info *i)
 	int	min_score;
 
 	y = -1;
-	min_score = 0;
+	min_score = -1000;
 	score = -1000;
 	while (++y < i->board_h)
 	{
@@ -80,25 +80,22 @@ int		find_place(t_info *i)
 		while (++x < i->board_w)
 		{
 			score = try_place(i, x, y);
-			if (score != -1000)
+			if (score != -1000 && (min_score == -1000 || score < min_score))
 			{
-				score = count_score(i, x, y);
-				if (min_score == 0 || score < min_score)
-				{
-					min_score = score;
-					i->res.y = y;
-					i->res.x = x;
-				}
+				min_score = score;
+				i->res.y = y;
+				i->res.x = x;
 			}
 		}
 	}
-	return (score);
+	return (min_score);
 }
 
 int		place(t_info *i)
 {
 	i->res.y = 0;
 	i->res.x = 0;
+	print_to_file("printing heat & board 1");
 	print_heat(i);
 	print_map(i->board, i->board_h);
 	if (find_place(i) == -1000)

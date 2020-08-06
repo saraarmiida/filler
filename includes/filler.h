@@ -6,7 +6,7 @@
 /*   By: spentti <spentti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 18:35:11 by spentti           #+#    #+#             */
-/*   Updated: 2020/08/05 17:17:09 by spentti          ###   ########.fr       */
+/*   Updated: 2020/08/06 14:31:05 by spentti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef struct	s_info
 {
 	t_player	player;
 	t_player	enemy;
-	const char	**board;
+	char		**board;
 	int			board_w;
 	int			board_h;
 	char		**piece;
@@ -54,9 +54,10 @@ int				place(t_info *i);
 int				is_around(t_info *i, int x, int y, int a);
 void			free_all(t_info *i);
 void			free_token(char **str);
+void			free_int_arr(int **arr, int h);
 void			trim_piece(t_info *i);
 
-void			print_map(const char **map, int h);
+void			print_map(char **map, int h);
 void			print_to_file(char *format);
 void			print_res_to_file(t_point res);
 void			print_heat(t_info *i);
