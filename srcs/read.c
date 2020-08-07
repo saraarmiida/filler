@@ -6,7 +6,7 @@
 /*   By: spentti <spentti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 14:43:00 by spentti           #+#    #+#             */
-/*   Updated: 2020/08/06 17:42:44 by spentti          ###   ########.fr       */
+/*   Updated: 2020/08/07 18:08:03 by spentti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,12 @@ void		get_token_size(int *h, int *w, char *line)
 	*h = ft_atoi(&line[off]);
 	*w = ft_atoi(line + off + ft_intlen(*h) + 1);
 }
+
+/*
+** Finds the upper left coordinates of where piece starts.
+** Used for trimming the piece and to give correct coordinates
+** after finding a place for the trimmed piece.
+*/
 
 int			find_offset(t_info *i)
 {
@@ -46,7 +52,13 @@ int			find_offset(t_info *i)
 	return (0);
 }
 
-static void	get_map(t_info *i)
+/*
+** Creates an integer map based of map read from stdin. Locate players
+** gives integer values describing if a spot is free, or reserved by
+** enemy or own player.
+*/
+
+static void	read_map(t_info *i)
 {
 	int		k;
 	char	*line;
@@ -54,23 +66,24 @@ static void	get_map(t_info *i)
 	k = 0;
 	get_next_line(i->fd, &line);
 	ft_strdel(&line);
-	print_to_file("after deleting extra row in map reading");
-	i->board = (char**)malloc(sizeof(char*) * i->board_h + 1);
+	i->hmap = (int **)malloc(sizeof(int *) * (unsigned long)i->board_h);
 	while (k < i->board_h && get_next_line(i->fd, &line) == 1)
 	{
 		print_to_file(line);
-		i->board[k] = line + 4;
-		print_to_file(i->board[k]);
-		// ft_strdel(&line);
+		i->hmap[k] = (int *)malloc(sizeof(int) * (unsigned long)i->board_w);
+		locate_players(&k, i, line);
+		ft_strdel(&line);
 		k++;
-		print_to_file(i->board[k - 1]);
 	}
 	print_to_file("right after getting map");
-	print_to_file(i->board[0]);
-	i->board[k] = NULL;
+	print_heat(i);
 }
 
-static void	get_piece(t_info *i)
+/*
+** Reads and saves piece to struct
+*/
+
+static void	read_piece(t_info *i)
 {
 	int		k;
 	char	*line;
@@ -83,25 +96,15 @@ static void	get_piece(t_info *i)
 		i->piece[k] = ft_strdup((const char*)line);
 		k++;
 		ft_strdel(&line);
-		print_to_file("when reading piece");
 	}
 	i->piece[k] = NULL;
-}
-
-void		read_map(t_info *i, char *line)
-{
-	get_token_size(&i->board_h, &i->board_w, line);
-	get_map(i);
-	// print_to_file(i->board[0]);
-}
-
-void		read_piece(t_info *i, char *line)
-{
-	get_token_size(&i->piece_h, &i->piece_w, line);
-	get_piece(i);
 	find_offset(i);
 	trim_piece(i);
 }
+
+/*
+** Reads map and piece given from stdin
+*/
 
 int			read_input(t_info *i)
 {
@@ -111,28 +114,19 @@ int			read_input(t_info *i)
 	{
 		if (ft_strncmp(line, "Plateau", 6) == 0)
 		{
-			read_map(i, line);
-			// print_to_file(i->board[0]);
+			get_token_size(&i->board_h, &i->board_w, line);
+			read_map(i);
 			ft_strdel(&line);
-			// print_to_file(i->board[0]);
-			print_to_file("after reading map");
 		}
 		else if (ft_strncmp("Piece", line, 4) == 0)
 		{
-			// print_to_file(i->board[0]);
-			read_piece(i, line);
-			// print_to_file(i->board[0]);
+			get_token_size(&i->piece_h, &i->piece_w, line);
+			read_piece(i);
 			ft_strdel(&line);
-			// print_to_file(i->board[0]);
-			print_to_file("after reading piece");
 			return (1);
 		}
 		else
-		{
-			print_to_file(line);
 			ft_strdel(&line);
-			print_to_file("after else");
-		}
 	}
 	return (0);
 }

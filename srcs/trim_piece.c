@@ -1,5 +1,10 @@
 #include "../includes/filler.h"
 
+/*
+** Checks how many horizontal lines of old piece actually have a spot
+** of piece in them
+*/
+
 static int		get_new_height(int piece_h, char **piece)
 {
 	int	new_h;
@@ -15,6 +20,11 @@ static int		get_new_height(int piece_h, char **piece)
 	}
 	return(new_h);
 }
+
+/*
+** Checks how many vertical lines of old piece actually have a spot
+** of piece in them
+*/
 
 static int		get_new_width(int piece_h, int piece_w, char **piece)
 {
@@ -41,6 +51,10 @@ static int		get_new_width(int piece_h, int piece_w, char **piece)
 	return(new_w);
 }
 
+/*
+** Trims out unnecessary empty lines from piece
+*/
+
 void	trim_piece(t_info *i)
 {
 	int		y;
@@ -60,6 +74,6 @@ void	trim_piece(t_info *i)
 		y++;
 	}
 	new_piece[y] = NULL;
-	free_token(i->piece);
+	free_piece(i->piece);
 	i->piece = new_piece;
 }

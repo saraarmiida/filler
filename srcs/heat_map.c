@@ -6,29 +6,34 @@
 /*   By: spentti <spentti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 13:20:28 by spentti           #+#    #+#             */
-/*   Updated: 2020/08/06 14:49:59 by spentti          ###   ########.fr       */
+/*   Updated: 2020/08/07 18:03:14 by spentti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/filler.h"
 
-static void	locate_players(int *y, t_info *i, int **map)
+/*
+** Locate players gives integer values describing if a spot is free,
+**  or reserved by enemy or own player.
+*/
+
+void	locate_players(int *y, t_info *i, char *line)
 {
 	int x;
 
-	x = 0;
-	while (x < i->board_w)
+	x = 4;
+	while (x - 4 < i->board_w)
 	{
-		if (i->board[*y][x] == '.')
-			map[*y][x] = 0;
-		else if (i->board[*y][x] == i->player.id || \
-		i->board[*y][x] == i->player.id + 32)
-			map[*y][x] = -2;
-		else if (i->board[*y][x] == i->enemy.id || \
-		i->board[*y][x] == i->enemy.id + 32)
-			map[*y][x] = -1;
+		if (line[x] == '.')
+			i->hmap[*y][x - 4] = 0;
+		else if (line[x] == i->player_id || line[x] == i->player_id + 32)
+			i->hmap[*y][x - 4] = -2;
+		else if (line[x] == i->enemy_id || line[x] == i->enemy_id + 32)
+			i->hmap[*y][x - 4] = -1;
 		x++;
 	}
+	print_int_string(i->hmap[*y], i->board_w);
+	print_int_string(i->hmap[0], i->board_w);
 }
 
 static void	count_heat_map(t_info *i)
@@ -57,7 +62,7 @@ static void	count_heat_map(t_info *i)
 	}
 }
 
-static void	init_heat_map(t_info *i)
+void		init_heat_map(t_info *i)
 {
 	int	x;
 	int y;
@@ -77,32 +82,5 @@ static void	init_heat_map(t_info *i)
 		}
 		y++;
 	}
-}
-
-static int	create_heat_map(t_info *i)
-{
-	int	y;
-	int	**map;
-
-	y = 0;
-	if (!(map = (int **)malloc(sizeof(int *) * i->board_h)))
-		return (1);
-	while (y < i->board_h)
-	{
-		if (!(map[y] = (int *)malloc(sizeof(int) * i->board_w)))
-			return (1);
-		locate_players(&y, i, map);
-		y++;
-	}
-	i->hmap = map;
-	return (0);
-}
-
-int			heat_map(t_info *i)
-{
-	create_heat_map(i);
-	init_heat_map(i);
 	count_heat_map(i);
-	// free_token(i->board);
-	return (0);
 }

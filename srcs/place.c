@@ -6,7 +6,7 @@
 /*   By: spentti <spentti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/28 10:05:05 by spentti           #+#    #+#             */
-/*   Updated: 2020/08/06 17:13:35 by spentti          ###   ########.fr       */
+/*   Updated: 2020/08/07 18:11:43 by spentti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@ int		count_score(t_info *i, int x, int y)
 		}
 		yp++;
 	}
-	print_to_file("score:");
-	print_int_to_file(0, score);
 	return (score);
 }
 
@@ -91,13 +89,15 @@ int		find_place(t_info *i)
 	return (min_score);
 }
 
+/*
+** Initializes result coordinates and resets them with offset
+*/
+
 int		place(t_info *i)
 {
 	i->res.y = 0;
 	i->res.x = 0;
-	print_to_file("printing heat & board 1");
 	print_heat(i);
-	print_map(i->board, i->board_h);
 	if (find_place(i) == -1000)
 		return (1);
 	i->res.y -= i->piece_off.y;

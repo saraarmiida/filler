@@ -6,7 +6,7 @@
 /*   By: spentti <spentti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 17:35:11 by spentti           #+#    #+#             */
-/*   Updated: 2020/08/06 14:14:12 by spentti          ###   ########.fr       */
+/*   Updated: 2020/08/07 17:50:54 by spentti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	print_heat(t_info *i)
 		x = 0;
 		while (x < i->board_w)
 		{
-			fprintf(fd, "%d ", i->hmap[y][x]);
+			fprintf(fd, "%3d ", i->hmap[y][x]);
 			x++;
 		}
 		fprintf(fd, "\n");
@@ -64,17 +64,17 @@ void	print_heat(t_info *i)
 	fclose(fd);
 }
 
-void	print_map(char **map, int h)
+void	print_int_string(int *str, int width)
 {
 	FILE	*fd;
-	int		y;
+	int		x;
 
 	fd = fopen("filler_log.txt", "a+");
-	y = 0;
-	while (y < h)
+	x = 0;
+	while (x < width)
 	{
-		fprintf(fd, "%s\n", map[y]);
-		y++;
+		fprintf(fd, "%3d ", str[x]);
+		x++;
 	}
 	fprintf(fd, "\n");
 	fclose(fd);
