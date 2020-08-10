@@ -6,7 +6,7 @@
 /*   By: spentti <spentti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 18:35:11 by spentti           #+#    #+#             */
-/*   Updated: 2020/08/07 17:47:28 by spentti          ###   ########.fr       */
+/*   Updated: 2020/08/10 17:48:27 by spentti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct	s_info
 	t_point		res;
 	int			**hmap;
 	int			fd;
+	int			first;
 }				t_info;
 
 int				read_input(t_info *i);
@@ -45,8 +46,10 @@ int				is_around(t_info *i, int x, int y, int a);
 void			free_piece(char **str);
 void			free_heat(int **arr, int h);
 void			trim_piece(t_info *i);
-void			locate_players(int *y, t_info *i, char *line);
+void			locate_players(int y, t_info *i, char *line);
 void			exit_loop(t_info *i);
+void			get_token_size(int *h, int *w, char *line);
+int				init_map(t_info *i, char *line);
 
 void			print_map(char **map, int h);
 void			print_to_file(char *format);

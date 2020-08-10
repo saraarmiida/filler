@@ -6,7 +6,7 @@
 /*   By: spentti <spentti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 13:20:28 by spentti           #+#    #+#             */
-/*   Updated: 2020/08/07 18:03:14 by spentti          ###   ########.fr       */
+/*   Updated: 2020/08/10 18:01:01 by spentti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 **  or reserved by enemy or own player.
 */
 
-void	locate_players(int *y, t_info *i, char *line)
+void	locate_players(int y, t_info *i, char *line)
 {
 	int x;
 
@@ -25,15 +25,15 @@ void	locate_players(int *y, t_info *i, char *line)
 	while (x - 4 < i->board_w)
 	{
 		if (line[x] == '.')
-			i->hmap[*y][x - 4] = 0;
+			i->hmap[y][x - 4] = 0;
 		else if (line[x] == i->player_id || line[x] == i->player_id + 32)
-			i->hmap[*y][x - 4] = -2;
+			i->hmap[y][x - 4] = -2;
 		else if (line[x] == i->enemy_id || line[x] == i->enemy_id + 32)
-			i->hmap[*y][x - 4] = -1;
+			i->hmap[y][x - 4] = -1;
 		x++;
 	}
-	print_int_string(i->hmap[*y], i->board_w);
-	print_int_string(i->hmap[0], i->board_w);
+	// print_int_string(i->hmap[y], i->board_w);
+	// print_int_string(i->hmap[0], i->board_w);
 }
 
 static void	count_heat_map(t_info *i)

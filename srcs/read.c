@@ -6,7 +6,7 @@
 /*   By: spentti <spentti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 14:43:00 by spentti           #+#    #+#             */
-/*   Updated: 2020/08/07 18:08:03 by spentti          ###   ########.fr       */
+/*   Updated: 2020/08/10 17:48:59 by spentti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,21 +60,24 @@ int			find_offset(t_info *i)
 
 static void	read_map(t_info *i)
 {
-	int		k;
+	int		y;
 	char	*line;
 
-	k = 0;
+	y = 0;
+	print_to_file("map1");
 	get_next_line(i->fd, &line);
 	ft_strdel(&line);
-	i->hmap = (int **)malloc(sizeof(int *) * (unsigned long)i->board_h);
-	while (k < i->board_h && get_next_line(i->fd, &line) == 1)
+	print_to_file("map2");
+	while (y < i->board_h && get_next_line(i->fd, &line) == 1)
 	{
+		print_to_file("map3");
 		print_to_file(line);
-		i->hmap[k] = (int *)malloc(sizeof(int) * (unsigned long)i->board_w);
-		locate_players(&k, i, line);
-		ft_strdel(&line);
-		k++;
+		locate_players(y, i, line);
+		print_to_file("map4");
+		y++;
 	}
+	print_to_file("map5");
+	// i->first = 0;
 	print_to_file("right after getting map");
 	print_heat(i);
 }
@@ -114,7 +117,10 @@ int			read_input(t_info *i)
 	{
 		if (ft_strncmp(line, "Plateau", 6) == 0)
 		{
-			get_token_size(&i->board_h, &i->board_w, line);
+			if (init_map(i, line) == 1)
+				return (1);
+			print_to_file("\n\nboard dimensions:");
+			print_int_to_file(i->board_h, i->board_w);
 			read_map(i);
 			ft_strdel(&line);
 		}
