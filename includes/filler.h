@@ -6,7 +6,7 @@
 /*   By: spentti <spentti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 18:35:11 by spentti           #+#    #+#             */
-/*   Updated: 2020/08/10 17:48:27 by spentti          ###   ########.fr       */
+/*   Updated: 2020/08/11 14:58:11 by spentti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ typedef struct	s_info
 }				t_info;
 
 int				read_input(t_info *i);
-void			init_heat_map(t_info *i);
+void			heat_map(t_info *i);
 int				place(t_info *i);
 int				is_around(t_info *i, int x, int y, int a);
 void			free_piece(char **str);

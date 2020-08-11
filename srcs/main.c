@@ -6,7 +6,7 @@
 /*   By: spentti <spentti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 19:07:39 by spentti           #+#    #+#             */
-/*   Updated: 2020/08/10 17:48:09 by spentti          ###   ########.fr       */
+/*   Updated: 2020/08/11 14:58:19 by spentti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,16 +96,18 @@ int			main(void)
 	init_struct(info);
 	if (get_player(info))
 		return (1);
-	while (1)
+	while (read_input(info))
 	{
-		if (read_input(info) == 0)
-			exit_loop(info);
-		init_heat_map(info);
-		if (place(info) == 1)
+		heat_map(info);
+		if (place(info) == 0)
 			exit_loop(info);
 		free_heat(info->hmap, info->board_h);
 		free_piece(info->piece);
 		ft_printf("%d %d\n", info->res.y, info->res.x);
 	}
+	free_heat(info->hmap, info->board_h);
+	free_piece(info->piece);
+	free(info);
+	info = NULL;
 	return (0);
 }

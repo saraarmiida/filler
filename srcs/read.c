@@ -6,7 +6,7 @@
 /*   By: spentti <spentti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 14:43:00 by spentti           #+#    #+#             */
-/*   Updated: 2020/08/10 17:48:59 by spentti          ###   ########.fr       */
+/*   Updated: 2020/08/11 14:50:19 by spentti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,19 +64,14 @@ static void	read_map(t_info *i)
 	char	*line;
 
 	y = 0;
-	print_to_file("map1");
 	get_next_line(i->fd, &line);
 	ft_strdel(&line);
-	print_to_file("map2");
 	while (y < i->board_h && get_next_line(i->fd, &line) == 1)
 	{
-		print_to_file("map3");
 		print_to_file(line);
 		locate_players(y, i, line);
-		print_to_file("map4");
 		y++;
 	}
-	print_to_file("map5");
 	// i->first = 0;
 	print_to_file("right after getting map");
 	print_heat(i);

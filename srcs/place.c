@@ -6,7 +6,7 @@
 /*   By: spentti <spentti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/28 10:05:05 by spentti           #+#    #+#             */
-/*   Updated: 2020/08/10 14:24:38 by spentti          ###   ########.fr       */
+/*   Updated: 2020/08/11 14:23:16 by spentti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,8 @@ int		place(t_info *i)
 	i->res.x = 0;
 	print_heat(i);
 	if (find_place(i) == -1000)
-		return (1);
+		return (0);
 	i->res.y -= i->piece_off.y;
 	i->res.x -= i->piece_off.x;
-	return (0);
+	return (1);
 }
