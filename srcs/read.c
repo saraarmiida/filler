@@ -6,7 +6,7 @@
 /*   By: spentti <spentti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 14:43:00 by spentti           #+#    #+#             */
-/*   Updated: 2020/08/12 15:55:34 by spentti          ###   ########.fr       */
+/*   Updated: 2020/08/12 16:08:58 by spentti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static int	find_offset(t_info *i)
 ** enemy or own player.
 */
 
-static void	read_map(t_info *i)
+static int	read_map(t_info *i)
 {
 	int		y;
 	char	*line;
@@ -66,11 +66,16 @@ static void	read_map(t_info *i)
 	y = 0;
 	get_next_line(i->fd, &line);
 	ft_strdel(&line);
+	if (!(i->hmap = (int**)malloc(sizeof(int*) * i->board_h)))
+		return (1);
 	while (y < i->board_h && get_next_line(i->fd, &line) == 1)
 	{
+		if (!(i->hmap[y] = (int*)malloc(sizeof(int) * i->board_w)))
+			return (1);
 		locate_players(y, i, line);
 		y++;
 	}
+	return (0);
 }
 
 /*
@@ -108,9 +113,9 @@ int			read_input(t_info *i)
 	{
 		if (ft_strncmp(line, "Plateau", 6) == 0)
 		{
-			if (init_map(i, line) == 1)
+			get_token_size(&i->board_h, &i->board_w, line);
+			if (read_map(i) == 1)
 				return (1);
-			read_map(i);
 			ft_strdel(&line);
 		}
 		else if (ft_strncmp("Piece", line, 4) == 0)
