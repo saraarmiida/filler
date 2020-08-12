@@ -5,7 +5,7 @@
 ** of piece in them
 */
 
-static int		get_new_height(int piece_h, char **piece)
+static int	get_new_height(int piece_h, char **piece)
 {
 	int	new_h;
 	int	y;
@@ -18,7 +18,7 @@ static int		get_new_height(int piece_h, char **piece)
 			new_h++;
 		y++;
 	}
-	return(new_h);
+	return (new_h);
 }
 
 /*
@@ -26,7 +26,7 @@ static int		get_new_height(int piece_h, char **piece)
 ** of piece in them
 */
 
-static int		get_new_width(int piece_h, int piece_w, char **piece)
+static int	get_new_width(int piece_h, int piece_w, char **piece)
 {
 	int	new_w;
 	int	y;
@@ -42,20 +42,20 @@ static int		get_new_width(int piece_h, int piece_w, char **piece)
 			if (piece[y][x] == '*')
 			{
 				new_w++;
-				break;
+				break ;
 			}
 			y++;
 		}
 		x++;
 	}
-	return(new_w);
+	return (new_w);
 }
 
 /*
 ** Trims out unnecessary empty lines from piece
 */
 
-void	trim_piece(t_info *i)
+void		trim_piece(t_info *i)
 {
 	int		y;
 	char	**new_piece;
@@ -69,7 +69,8 @@ void	trim_piece(t_info *i)
 	new_piece = (char**)malloc(sizeof(char*) * i->piece_h + 1);
 	while (y < i->piece_h)
 	{
-		new_piece[y] = ft_strndup((const char*)i->piece[y_temp] + i->piece_off.x, i->piece_w);
+		new_piece[y] = ft_strndup((const char*)i->piece[y_temp] +\
+		i->piece_off.x, i->piece_w);
 		y_temp++;
 		y++;
 	}

@@ -6,7 +6,7 @@
 /*   By: spentti <spentti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 13:20:28 by spentti           #+#    #+#             */
-/*   Updated: 2020/08/11 14:58:14 by spentti          ###   ########.fr       */
+/*   Updated: 2020/08/12 15:53:41 by spentti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 **  or reserved by enemy or own player.
 */
 
-void	locate_players(int y, t_info *i, char *line)
+void		locate_players(int y, t_info *i, char *line)
 {
 	int x;
 
@@ -32,17 +32,17 @@ void	locate_players(int y, t_info *i, char *line)
 			i->hmap[y][x - 4] = -1;
 		x++;
 	}
-	// print_int_string(i->hmap[y], i->board_w);
-	// print_int_string(i->hmap[0], i->board_w);
 }
 
-void		heat_map(t_info *i)
+static void	count_heat_map(t_info *i)
 {
 	int	x;
 	int y;
 	int a;
+	int	where;
 
-	a = -1;
+	a = 1;
+	where = 0;
 	while (a < i->board_w || a < i->board_h)
 	{
 		y = 0;
@@ -53,15 +53,32 @@ void		heat_map(t_info *i)
 			{
 				if (i->hmap[y][x] == 0)
 					if (is_around(i, x, y, a))
-					{
-						if (a == -1)
-							a++;
 						i->hmap[y][x] = a + 1;
-					}
 				x++;
 			}
 			y++;
 		}
 		a++;
 	}
+}
+
+void		heat_map(t_info *i)
+{
+	int	x;
+	int y;
+
+	y = 0;
+	while (y < i->board_h)
+	{
+		x = 0;
+		while (x < i->board_w)
+		{
+			if (i->hmap[y][x] == 0)
+				if (is_around(i, x, y, -1))
+					i->hmap[y][x] = 1;
+			x++;
+		}
+		y++;
+	}
+	count_heat_map(i);
 }

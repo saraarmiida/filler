@@ -6,13 +6,13 @@
 /*   By: spentti <spentti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 14:43:00 by spentti           #+#    #+#             */
-/*   Updated: 2020/08/11 14:50:19 by spentti          ###   ########.fr       */
+/*   Updated: 2020/08/12 15:55:34 by spentti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/filler.h"
 
-void		get_token_size(int *h, int *w, char *line)
+static void	get_token_size(int *h, int *w, char *line)
 {
 	int		off;
 
@@ -27,7 +27,7 @@ void		get_token_size(int *h, int *w, char *line)
 ** after finding a place for the trimmed piece.
 */
 
-int			find_offset(t_info *i)
+static int	find_offset(t_info *i)
 {
 	int	y;
 	int	x;
@@ -68,13 +68,9 @@ static void	read_map(t_info *i)
 	ft_strdel(&line);
 	while (y < i->board_h && get_next_line(i->fd, &line) == 1)
 	{
-		print_to_file(line);
 		locate_players(y, i, line);
 		y++;
 	}
-	// i->first = 0;
-	print_to_file("right after getting map");
-	print_heat(i);
 }
 
 /*
@@ -114,8 +110,6 @@ int			read_input(t_info *i)
 		{
 			if (init_map(i, line) == 1)
 				return (1);
-			print_to_file("\n\nboard dimensions:");
-			print_int_to_file(i->board_h, i->board_w);
 			read_map(i);
 			ft_strdel(&line);
 		}

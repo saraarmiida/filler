@@ -6,7 +6,7 @@
 /*   By: spentti <spentti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 13:12:21 by spentti           #+#    #+#             */
-/*   Updated: 2020/03/06 17:00:40 by spentti          ###   ########.fr       */
+/*   Updated: 2020/08/12 13:42:55 by spentti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ int					ft_wordcount(char const *s, char c);
 int					ft_strclen(char const *s, int i, char c);
 int					ft_intlen(long long int n);
 
-char				*ft_strndup(const char *str, size_t n);
+char				*ft_strndup(const char *str, int n);
 char				*ft_strnjoin(char const *s1, char const *s2, size_t n);
 char				*ft_strcjoin(char const *s1, char const *s2, char const c);
 char				*ft_strccpy(char *dst, const char *src, const char c);

@@ -6,17 +6,9 @@
 /*   By: spentti <spentti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 19:07:39 by spentti           #+#    #+#             */
-/*   Updated: 2020/08/11 14:58:19 by spentti          ###   ########.fr       */
+/*   Updated: 2020/08/12 15:52:26 by spentti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-/*
-** 30.7
-** - exits (doesnt find cooordinates) for no reason
-** - changed use of piece offset to allow giving minus coordinates
-** 5.8
-** - sometimes random line from previous map gets left on the first line of a map
-*/
 
 #include "../includes/filler.h"
 
@@ -44,7 +36,7 @@ static int	get_player(t_info *i)
 ** initializes struct values
 */
 
-void		init_struct(t_info *i)
+static void	init_struct(t_info *i)
 {
 	i->player_id = 0;
 	i->enemy_id = 0;
@@ -61,18 +53,18 @@ void		init_struct(t_info *i)
 ** piece for as long as there is a possible place.
 */
 
-int		init_map(t_info *i, char *line)
+int			init_map(t_info *i, char *line)
 {
 	int		y;
 	int		x;
 
 	get_token_size(&i->board_h, &i->board_w, line);
-	if (!(i->hmap = (int **)malloc(sizeof(int *) * (unsigned long)i->board_h)))
+	if (!(i->hmap = (int**)malloc(sizeof(int*) * i->board_h)))
 		return (1);
 	y = 0;
 	while (y < i->board_h)
 	{
-		if (!(i->hmap[y] = (int *)malloc(sizeof(int) * (unsigned long)i->board_w)))
+		if (!(i->hmap[y] = (int*)malloc(sizeof(int) * i->board_w)))
 			return (1);
 		x = 0;
 		while (x < i->board_w)
@@ -82,8 +74,6 @@ int		init_map(t_info *i, char *line)
 		}
 		y++;
 	}
-	print_to_file("at init");
-	print_heat(i);
 	return (0);
 }
 

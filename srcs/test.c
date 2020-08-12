@@ -6,13 +6,14 @@
 /*   By: spentti <spentti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 17:35:11 by spentti           #+#    #+#             */
-/*   Updated: 2020/08/07 17:50:54 by spentti          ###   ########.fr       */
+/*   Updated: 2020/08/12 13:07:49 by spentti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/filler.h"
 #include <fcntl.h>
 #include <stdarg.h>
+#include <stdio.h>
 
 void	print_to_file(char *format)
 {

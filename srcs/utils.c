@@ -6,7 +6,7 @@
 /*   By: spentti <spentti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 16:47:43 by spentti           #+#    #+#             */
-/*   Updated: 2020/08/10 14:07:42 by spentti          ###   ########.fr       */
+/*   Updated: 2020/08/12 15:59:17 by spentti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,25 +16,25 @@
 ** Checks if there is a wanted integer 'a' anywhere around a point (x,y)
 */
 
-int			is_around(t_info *i, int x, int y, int a)
+int		is_around(t_info *i, int x, int y, int a)
 {
 	if (x + 1 < i->board_w && i->hmap[y][x + 1] == a)
 		return (1);
 	if (x + 1 < i->board_w && y + 1 < i->board_h && \
 	i->hmap[y + 1][x + 1] == a)
-		return (1);
+		return (2);
 	if (y + 1 < i->board_h && i->hmap[y + 1][x] == a)
-		return (1);
+		return (3);
 	if (x - 1 >= 0 && y + 1 < i->board_h && i->hmap[y + 1][x - 1] == a)
-		return (1);
+		return (4);
 	if (x - 1 >= 0 && i->hmap[y][x - 1] == a)
-		return (1);
+		return (5);
 	if (x - 1 >= 0 && y - 1 >= 0 && i->hmap[y - 1][x - 1] == a)
-		return (1);
+		return (6);
 	if (y - 1 >= 0 && i->hmap[y - 1][x] == a)
-		return (1);
+		return (7);
 	if (x + 1 < i->board_w && y - 1 >= 0 && i->hmap[y - 1][x + 1] == a)
-		return (1);
+		return (8);
 	return (0);
 }
 
@@ -67,7 +67,7 @@ void	free_piece(char **str)
 	str = NULL;
 }
 
-void		exit_loop(t_info *i)
+void	exit_loop(t_info *i)
 {
 	free_heat(i->hmap, i->board_h);
 	free_piece(i->piece);

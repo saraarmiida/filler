@@ -6,7 +6,7 @@
 /*   By: spentti <spentti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 13:20:36 by spentti           #+#    #+#             */
-/*   Updated: 2020/08/06 17:57:03 by spentti          ###   ########.fr       */
+/*   Updated: 2020/08/12 13:44:52 by spentti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_strdup(const char *str)
 	i = 0;
 	if (!(dup = ft_strnew(ft_strlen(str))))
 		return (NULL);
-	while (str[i] != '\0')
+	while (str[i])
 	{
 		dup[i] = str[i];
 		i++;
