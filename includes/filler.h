@@ -6,18 +6,15 @@
 /*   By: spentti <spentti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 18:35:11 by spentti           #+#    #+#             */
-/*   Updated: 2020/08/13 14:35:00 by spentti          ###   ########.fr       */
+/*   Updated: 2020/08/14 15:13:59 by spentti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FILLER_H
 # define FILLER_H
 
-# include <stdlib.h>
 # include "../libft/ft_printf/includes/ft_printf.h"
-# include "../libft/libft/includes/libft.h"
-# include "mlx/mlx.h"
-# include <fcntl.h>
+// # include "mlx/mlx.h"
 
 typedef struct	s_point
 {

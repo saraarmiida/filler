@@ -1,6 +1,6 @@
 #include "../includes/visualiser.h"
 
-char			*get_player_name(char *line)
+static char		*get_name(char *line)
 {
 	int	i;
 	int	off;
@@ -18,16 +18,16 @@ char			*get_player_name(char *line)
 	return (ft_strsub((const char *)line, off, i - off));
 }
 
-void			fetch_player_name(char *line, t_env *p)
+static void		get_player_name(char *line, t_env *p)
 {
 	if (line[9] == 'p' && line[10] == '1')
-		p->p1 = get_player_name(line);
+		p->p1 = get_name(line);
 	if (line[9] == 'p' && line[10] == '2')
-		p->p2 = get_player_name(line);
+		p->p2 = get_name(line);
 	ft_strdel(&line);
 }
 
-void			fetch_map(char *s_line, t_env *p)
+static void		fetch_map(char *s_line, t_env *p)
 {
 	int		y;
 	char	*line;
@@ -55,7 +55,7 @@ void			get_input(t_env *p)
 	while (get_next_line(0, &line) == 1)
 	{
 		if (ft_strncmp(line, "$$$", 2) == 0)
-			fetch_player_name(line, p);
+			get_player_name(line, p);
 		if (ft_strncmp(line, "Plateau", 6) == 0)
 			fetch_map(line, p);
 		if (ft_strncmp(line, "Piece", 4) == 0)

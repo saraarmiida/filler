@@ -1,6 +1,6 @@
 #include "../includes/visualiser.h"
 
-void		draw_background(t_env *p)
+static void		draw_background(t_env *p)
 {
 	int		i;
 
@@ -15,101 +15,58 @@ void		draw_background(t_env *p)
 	}
 }
 
-void		draw_menu(t_env *p)
+static void		tug_of_war(t_env *p)
 {
-	int		width;
-
-	width = WIDTH;
-	p->red = 24;
-	p->green = 24;
-	p->blue = 24;
-	p->size.width = 50;
-	p->size.height = HEIGHT;
-	draw_rectangle(WIDTH / 2, 0, p);
-	draw_rectangle(WIDTH - p->size.width, 0, p);
-	p->size.width = WIDTH;
-	p->size.height = 50;
-	draw_rectangle(0, 0, p);
-	draw_rectangle(0, HEIGHT - p->size.height, p);
-	p->size.width = WIDTH / 2;
-	p->size.height = HEIGHT;
-	draw_rectangle(0, 0, p);
-}
-
-void		tug_of_war(t_env *p)
-{
-	calc_score(p);
-	modif_color(238, 152, 12, p);
-	p->size.width = 330;
-	p->size.height = 15;
-	draw_rectangle((WIDTH / 2) + 120, 120, p);
-}
-
-// void		tug_of_war(t_env *p)
-// {
-// 	int		scorep1;
-// 	int		scorep2;
-
-// 	calc_score(p);
-// 	scorep1 = p->scorep1 / (p->scorep1 + p->scorep2);
-// 	scorep2 = p->scorep2 / (p->scorep1 + p->scorep2);
-// 	modif_color(238, 152, 12, p);
-// 	p->size.width = 330 * scorep1;
-// 	p->size.height = 15;
-// 	draw_rectangle((WIDTH / 2) + 120, 120, p);
-// 	// modif_color(81, 172, 154, p);
-// 	// p->size.width = 330 * scorep2;
-// 	// p->size.height = 15;
-// 	// draw_rectangle((WIDTH / 2) + 120 + (330 * scorep1), 120, p);
-// }
-
-void		draw_score(t_env *p)
-{
-	char	*str;
+	float	scorep1;
+	float	scorep2;
 
 	calc_score(p);
+	scorep1 = p->scorep1 / (p->scorep1 + p->scorep2);
+	scorep2 = p->scorep2 / (p->scorep1 + p->scorep2);
 	modif_color(238, 152, 12, p);
-	p->size.width = 150;
-	p->size.height = ((HEIGHT / 3) * (p->scorep1 / (p->map_size_x * p->map_size_y)));
-	draw_rectangle((WIDTH / 2) + 330, (HEIGHT / 2) + 170, p);
+	p->size.x = 300 * scorep1;
+	p->size.y = 15;
+	draw_rectangle((WIDTH / 2) - 150, 120, p);
 	modif_color(81, 172, 154, p);
-	p->size.width = 150;
-	p->size.height = ((HEIGHT / 3) * (p->scorep2 / (p->map_size_x * p->map_size_y)));
-	draw_rectangle((WIDTH / 2) + 120, (HEIGHT / 2) + 170, p);
+	p->size.x = 300 * scorep2;
+	draw_rectangle((WIDTH / 2) - 150 + (300 * scorep1), 120, p);
+	modif_color(0, 0, 0, p);
+	p->size.x = 1;
+	draw_rectangle(WIDTH / 2, 120, p);
 }
 
-void		draw_map(t_env *p)
+static void		draw_map(t_env *p)
 {
-	int		i;
-	int		i2;
+	int		y;
+	int		x;
 	int		s;
+	t_size	off;
 
-	p->size.height = ((WIDTH / 2) / (p->map_size_x)) - 2;
-	p->size.width = ((WIDTH / 2) / (p->map_size_x)) - 2;
-	s = ((WIDTH / 2) / (p->map_size_x)) - 2;
-	i = -1;
-	while (++i < p->map_size_y)
+	s = ((WIDTH / 2) / (p->map_size_x)) + 2;
+	p->size.x = s - 2;
+	p->size.y = s - 2;
+	off.x = (WIDTH - (p->map_size_x * s)) / 2;
+	off.y = (HEIGHT - (p->map_size_y * s)) / 2 + p->map_size_y;
+	y = -1;
+	while (++y < p->map_size_y)
 	{
-		i2 = -1;
-		while (++i2 < p->map_size_x)
+		x = -1;
+		while (++x < p->map_size_x)
 		{
-			if (p->map[i][i2] == '.')
+			if (p->map[y][x] == '.')
 				modif_color(0, 0, 0, p);
-			else if (p->map[i][i2] == 'X' || p->map[i][i2] == 'x')
+			else if (p->map[y][x] == 'X' || p->map[y][x] == 'x')
 				modif_color(81, 172, 154, p);
-			else if (p->map[i][i2] == 'O' || p->map[i][i2] == 'o')
+			else if (p->map[y][x] == 'O' || p->map[y][x] == 'o')
 				modif_color(238, 152, 12, p);
-			draw_rectangle((i2 * s) + (i2 * 2) + 2, (i * s) + (i * 2) +
-				((600 - (p->map_size_y * s) - (p->map_size_y * 2)) / 2), p);
+			draw_rectangle(s * x + off.x, y * s + off.y, p);
 		}
 	}
 }
 
-void		draw(t_env *p)
+void			draw(t_env *p)
 {
 	draw_background(p);
-	draw_menu(p);
-	// draw_score(p);
 	tug_of_war(p);
 	draw_map(p);
 }

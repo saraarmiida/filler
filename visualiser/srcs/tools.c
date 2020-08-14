@@ -1,30 +1,30 @@
 #include "../includes/visualiser.h"
 
-void		draw_rectangle(int x, int y, t_env *p)
+void	draw_rectangle(int xs, int ys, t_env *p)
 {
-	int		i;
-	int		i2;
+	int		x;
+	int		y;
 	int		tmp;
 
-	i2 = 0;
+	y = 0;
 	tmp = 0;
-	while (i2 < (p->size.height * 4))
+	while (y < (p->size.y * 4))
 	{
-		i = 0;
-		while (i < (p->size.width * 4))
+		x = 0;
+		while (x < (p->size.x * 4))
 		{
-			p->ret[i + tmp + ((y * WIDTH * 4) + (x * 4))] = p->blue;
-			p->ret[i + tmp + 1 + ((y * WIDTH * 4) + (x * 4))] = p->green;
-			p->ret[i + tmp + 2 + ((y * WIDTH * 4) + (x * 4))] = p->red;
-			p->ret[i + tmp + 3 + ((y * WIDTH * 4) + (x * 4))] = 0;
-			i += 4;
+			p->ret[x + tmp + ((ys * WIDTH * 4) + (xs * 4))] = p->blue;
+			p->ret[x + tmp + 1 + ((ys * WIDTH * 4) + (xs * 4))] = p->green;
+			p->ret[x + tmp + 2 + ((ys * WIDTH * 4) + (xs * 4))] = p->red;
+			p->ret[x + tmp + 3 + ((ys * WIDTH * 4) + (xs * 4))] = 0;
+			x += 4;
 		}
-		i2 += 4;
+		y += 4;
 		tmp += (WIDTH * 4);
 	}
 }
 
-void		calc_score(t_env *p)
+void	calc_score(t_env *p)
 {
 	int		y;
 	int		x;
@@ -47,27 +47,36 @@ void		calc_score(t_env *p)
 	}
 }
 
-void		modif_color(int red, int green, int blue, t_env *p)
+void	modif_color(int red, int green, int blue, t_env *p)
 {
 	p->red = red;
 	p->green = green;
 	p->blue = blue;
 }
 
-void		print_final(t_env *p)
+void	print_score(t_env *p)
 {
 	char	*str;
 
-	str = ft_itoa(p->scorep1);
-	mlx_string_put(p->mlx, p->win, (WIDTH / 2) + 390, 90,
-		0xFFFFFFF, str);
-	str = ft_itoa(p->scorep2);
-	mlx_string_put(p->mlx, p->win, (WIDTH / 2) + 180, 90,
-		0xFFFFFFF, str);
-	str = p->p1;
-	mlx_string_put(p->mlx, p->win, (WIDTH / 2) + 330, 60,
-		0xFFFFFF, str);
-	str = p->p2;
-	mlx_string_put(p->mlx, p->win, (WIDTH / 2) + 120, 60,
-		0xFFFFFF, str);
+	mlx_string_put(p->mlx, p->win, (WIDTH / 2) - 150, 60, 0xFFFFFF, p->p1);
+	mlx_string_put(p->mlx, p->win, (WIDTH / 2) - 150, 90, 0xFFFFFFF, \
+	ft_itoa(p->scorep1));
+	mlx_string_put(p->mlx, p->win, (WIDTH / 2) - 10, 60, 0xFFFFFF, "vs");
+	mlx_string_put(p->mlx, p->win, (WIDTH / 2) + 20, 60, 0xFFFFFF, p->p2);
+	mlx_string_put(p->mlx, p->win, (WIDTH / 2) + 20, 90, 0xFFFFFFF, \
+	ft_itoa(p->scorep2));
+}
+
+void	free_map(char **str)
+{
+	int		i;
+
+	i = 0;
+	while (str[i] != NULL)
+	{
+		ft_strdel(&str[i]);
+		i++;
+	}
+	free(str);
+	str = NULL;
 }

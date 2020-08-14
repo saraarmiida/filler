@@ -13,12 +13,12 @@ static int	loop_key_hook(t_env *p)
 		mlx_put_image_to_window(p->mlx, p->win, p->img, 0, 0);
 		mlx_destroy_image(p->mlx, p->img);
 		p->img = mlx_new_image(p->mlx, WIDTH, HEIGHT);
-		print_final(p);
+		print_score(p);
 	}
 	if (p->pause == 1)
 	{
 		str = "PAUSE";
-		mlx_string_put(p->mlx, p->win, (WIDTH / 4) - 10, (HEIGHT / 2) - 10,
+		mlx_string_put(p->mlx, p->win, (WIDTH / 2) - 10, (HEIGHT / 2) - 1,
 			0x0FFFFFF, str);
 	}
 	return (0);
@@ -31,7 +31,11 @@ int			key_hook(int keycode, t_env *p)
 
 	i = 1;
 	if (keycode == ESC)
+	{
+		free_map(p->map);
+		free(p);
 		exit(1);
+	}
 	loop_key_hook(p);
 	return (0);
 }
@@ -39,12 +43,7 @@ int			key_hook(int keycode, t_env *p)
 int			mouse_hook(int button, int x, int y, t_env *p)
 {
 	if (button == 1)
-	{
-		if (p->pause == 0)
-			p->pause = 1;
-		else if (p->pause == 1)
-			p->pause = 0;
-	}
+		p->pause = p->pause == 0 ? 1 : 0;
 	loop_key_hook(p);
 	return (0);
 }
@@ -75,7 +74,7 @@ int			main(void)
 	mlx_mouse_hook(p->win, mouse_hook, p);
 	loop_key_hook(p);
 	mlx_loop_hook(p->mlx, loop_key_hook, p);
-	free(p->map);
+	free_map(p->map);
 	mlx_loop(p->mlx);
 	free(p);
 	return (0);
