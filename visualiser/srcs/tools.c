@@ -56,8 +56,6 @@ void	modif_color(int red, int green, int blue, t_env *p)
 
 void	print_score(t_env *p)
 {
-	char	*str;
-
 	mlx_string_put(p->mlx, p->win, (WIDTH / 2) - 150, 60, 0xFFFFFF, p->p1);
 	mlx_string_put(p->mlx, p->win, (WIDTH / 2) - 150, 90, 0xFFFFFFF, \
 	ft_itoa(p->scorep1));

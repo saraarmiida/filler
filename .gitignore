@@ -1,0 +1,6 @@
+filler.trace
+*.DS_Store
+*.o
+*.a
+spentti.filler
+visualiser/visual

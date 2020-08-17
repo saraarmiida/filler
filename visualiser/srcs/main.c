@@ -27,7 +27,6 @@ static int	loop_key_hook(t_env *p)
 int			key_hook(int keycode, t_env *p)
 {
 	int		i;
-	int		j;
 
 	i = 1;
 	if (keycode == ESC)
@@ -40,7 +39,7 @@ int			key_hook(int keycode, t_env *p)
 	return (0);
 }
 
-int			mouse_hook(int button, int x, int y, t_env *p)
+int			mouse_hook(int button, t_env *p)
 {
 	if (button == 1)
 		p->pause = p->pause == 0 ? 1 : 0;

@@ -11,14 +11,14 @@ OBJ = $(SRCS:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	gcc -o $(NAME) $(FLAGS) $(OBJ) -L../includes/mlx/ -lmlx -framework OpenGL -framework AppKit ../libft/libft.a
-	echo "visualiser done"
+$(NAME):
+	@echo "Compiling visualiser..."
+	@gcc -o $(NAME) $(FLAGS) $(SRCS) -L includes/mlx/ -lmlx -framework OpenGL -framework AppKit ../libft/libft.a
 
 clean:
-	rm -f $(OBJ)
 
 fclean: clean
-	rm -f $(NAME)
+	@echo "Removing executable..."
+	@rm -f $(NAME)
 
 re: fclean all
