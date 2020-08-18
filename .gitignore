@@ -4,3 +4,6 @@ filler.trace
 *.a
 spentti.filler
 visualiser/visual
+*.sh
+filler_log.txt
+main.c

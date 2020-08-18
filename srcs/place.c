@@ -6,7 +6,7 @@
 /*   By: spentti <spentti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/28 10:05:05 by spentti           #+#    #+#             */
-/*   Updated: 2020/08/12 16:03:53 by spentti          ###   ########.fr       */
+/*   Updated: 2020/08/18 12:35:49 by spentti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,10 @@ int		find_place(t_info *i)
 	int	x;
 	int	y;
 	int	score;
-	int	min_score;
+	int	max_score;
 
 	y = -1;
-	min_score = -1000;
+	max_score = -1000;
 	score = -1000;
 	while (++y < i->board_h)
 	{
@@ -78,15 +78,15 @@ int		find_place(t_info *i)
 		while (++x < i->board_w)
 		{
 			score = try_place(i, x, y);
-			if (score != -1000 && (min_score == -1000 || score < min_score))
+			if (score != -1000 && (max_score == -1000 || score > max_score))
 			{
-				min_score = score;
+				max_score = score;
 				i->res.y = y;
 				i->res.x = x;
 			}
 		}
 	}
-	return (min_score);
+	return (max_score);
 }
 
 /*
