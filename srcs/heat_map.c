@@ -6,15 +6,15 @@
 /*   By: spentti <spentti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 13:20:28 by spentti           #+#    #+#             */
-/*   Updated: 2020/08/18 15:14:09 by spentti          ###   ########.fr       */
+/*   Updated: 2020/08/19 16:18:16 by spentti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/filler.h"
 
 /*
-** Locate players gives integer values describing if a spot is free,
-**  or reserved by enemy or own player.
+** locate_players gives integer values describing if a spot is free,
+** reserved by enemy or reserved by own player.
 */
 
 void		locate_players(int y, t_info *i, char *line)
@@ -33,6 +33,12 @@ void		locate_players(int y, t_info *i, char *line)
 		x++;
 	}
 }
+
+/*
+** count_heat_map goes through the map giving free spots
+** descending values according to how far they are from
+** enemy pieces
+*/
 
 void	count_heat_map(t_info *i)
 {
@@ -59,6 +65,11 @@ void	count_heat_map(t_info *i)
 		a--;
 	}
 }
+
+/*
+** heat_map sets the free spots right next to enemy pieces
+** to the highest value of heatmap
+*/
 
 void		heat_map(t_info *i)
 {

@@ -6,7 +6,7 @@
 /*   By: spentti <spentti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 18:35:11 by spentti           #+#    #+#             */
-/*   Updated: 2020/08/14 15:13:59 by spentti          ###   ########.fr       */
+/*   Updated: 2020/08/19 16:33:06 by spentti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define FILLER_H
 
 # include "../libft/ft_printf/includes/ft_printf.h"
-// # include "mlx/mlx.h"
 
 typedef struct	s_point
 {

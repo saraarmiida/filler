@@ -7,3 +7,4 @@ visualiser/visual
 *.sh
 filler_log.txt
 main.c
+srcs/test.c

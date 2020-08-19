@@ -6,7 +6,7 @@
 /*   By: spentti <spentti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 19:07:39 by spentti           #+#    #+#             */
-/*   Updated: 2020/08/13 19:40:09 by spentti          ###   ########.fr       */
+/*   Updated: 2020/08/19 16:14:20 by spentti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,11 @@ static void	init_struct(t_info *i)
 	i->first = 1;
 }
 
+/*
+** loops through as long as the virtual machine gives new pieces
+** or until a valid place for a piece can't be found anymore
+*/
+
 int			main(void)
 {
 	t_info	*info;
@@ -66,8 +71,6 @@ int			main(void)
 		free_piece(info->piece);
 		ft_printf("%d %d\n", info->res.y, info->res.x);
 	}
-	free_heat(info->hmap, info->board_h);
-	free_piece(info->piece);
 	free(info);
 	info = NULL;
 	return (0);

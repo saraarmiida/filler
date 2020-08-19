@@ -1,9 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   visualiser.h                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: spentti <spentti@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/08/19 16:34:13 by spentti           #+#    #+#             */
+/*   Updated: 2020/08/19 19:41:59 by spentti          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef VISUALISER_H
 # define VISUALISER_H
 
 # include "../../libft/libft/includes/libft.h"
-# include "mlx/mlx.h"
+# include "mlx.h"
 # include <stdlib.h>
 # define WIDTH	800
 # define HEIGHT	900
@@ -44,6 +55,7 @@ void			get_input(t_env *p);
 void			draw(t_env *p);
 
 void			draw_rectangle(int start_x, int start_y, t_env *p);
+void			draw_background(t_env *p);
 void			print_score(t_env *p);
 void			modif_color(int r, int v, int b, t_env *p);
 void			calc_score(t_env *p);

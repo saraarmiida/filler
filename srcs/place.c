@@ -6,11 +6,16 @@
 /*   By: spentti <spentti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/28 10:05:05 by spentti           #+#    #+#             */
-/*   Updated: 2020/08/18 12:35:49 by spentti          ###   ########.fr       */
+/*   Updated: 2020/08/19 16:25:24 by spentti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/filler.h"
+
+/*
+** count_score sums the heatmap values of coordinates where the piece
+** can be placed
+*/
 
 int		count_score(t_info *i, int x, int y)
 {
@@ -33,6 +38,13 @@ int		count_score(t_info *i, int x, int y)
 	}
 	return (score);
 }
+
+/*
+** try_place checks if piece can be placed in spot of given coordinates.
+** It checks that the piece is not overlapping with enemy piece, it is
+** overlapping with exactly one own player square and the piece does not
+** go out of map dimensions.
+*/
 
 int		try_place(t_info *i, int x, int y)
 {
@@ -62,6 +74,12 @@ int		try_place(t_info *i, int x, int y)
 	return (count_score(i, x, y));
 }
 
+/*
+** find_place goes through map finding all possible places to put
+** the piece in and chooses the place with the highest heat score
+** as the final resullt
+*/
+
 int		find_place(t_info *i)
 {
 	int	x;
@@ -90,7 +108,7 @@ int		find_place(t_info *i)
 }
 
 /*
-** Initializes result coordinates and resets them with offset
+** place initializes result coordinates and resets them with offset
 */
 
 int		place(t_info *i)

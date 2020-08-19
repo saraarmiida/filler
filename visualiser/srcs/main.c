@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: spentti <spentti@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/08/19 16:49:41 by spentti           #+#    #+#             */
+/*   Updated: 2020/08/19 19:45:56 by spentti          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/visualiser.h"
 
 static int	loop_key_hook(t_env *p)
@@ -18,7 +30,7 @@ static int	loop_key_hook(t_env *p)
 	if (p->pause == 1)
 	{
 		str = "PAUSE";
-		mlx_string_put(p->mlx, p->win, (WIDTH / 2) - 10, (HEIGHT / 2) - 1,
+		mlx_string_put(p->mlx, p->win, (WIDTH / 2) - 28, (HEIGHT / 2) - 1,
 			0x0FFFFFF, str);
 	}
 	return (0);
@@ -39,8 +51,10 @@ int			key_hook(int keycode, t_env *p)
 	return (0);
 }
 
-int			mouse_hook(int button, t_env *p)
+int			mouse_hook(int button, int x, int y, t_env *p)
 {
+	x = 0;
+	y = 0;
 	if (button == 1)
 		p->pause = p->pause == 0 ? 1 : 0;
 	loop_key_hook(p);

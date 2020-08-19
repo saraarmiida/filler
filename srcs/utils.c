@@ -6,14 +6,14 @@
 /*   By: spentti <spentti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 16:47:43 by spentti           #+#    #+#             */
-/*   Updated: 2020/08/12 15:59:17 by spentti          ###   ########.fr       */
+/*   Updated: 2020/08/19 16:32:23 by spentti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/filler.h"
 
 /*
-** Checks if there is a wanted integer 'a' anywhere around a point (x,y)
+** Is_around checks if there is an integer 'a' anywhere around a point (x,y)
 */
 
 int		is_around(t_info *i, int x, int y, int a)

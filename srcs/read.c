@@ -6,11 +6,15 @@
 /*   By: spentti <spentti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 14:43:00 by spentti           #+#    #+#             */
-/*   Updated: 2020/08/12 16:08:58 by spentti          ###   ########.fr       */
+/*   Updated: 2020/08/19 16:28:24 by spentti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/filler.h"
+
+/*
+** Get_token_size saves map and piece dimensions.
+*/
 
 static void	get_token_size(int *h, int *w, char *line)
 {
@@ -22,7 +26,7 @@ static void	get_token_size(int *h, int *w, char *line)
 }
 
 /*
-** Finds the upper left coordinates of where piece starts.
+** Find_offset finds the upper left coordinates of where piece starts.
 ** Used for trimming the piece and to give correct coordinates
 ** after finding a place for the trimmed piece.
 */
@@ -53,9 +57,7 @@ static int	find_offset(t_info *i)
 }
 
 /*
-** Creates an integer map based of map read from stdin. Locate players
-** gives integer values describing if a spot is free, or reserved by
-** enemy or own player.
+** Read_map creates an integer map based of map read from stdin.
 */
 
 static int	read_map(t_info *i)
@@ -73,13 +75,14 @@ static int	read_map(t_info *i)
 		if (!(i->hmap[y] = (int*)malloc(sizeof(int) * i->board_w)))
 			return (1);
 		locate_players(y, i, line);
+		ft_strdel(&line);
 		y++;
 	}
 	return (0);
 }
 
 /*
-** Reads and saves piece to struct
+** Read_piece reads and saves piece to struct.
 */
 
 static void	read_piece(t_info *i)
@@ -102,7 +105,7 @@ static void	read_piece(t_info *i)
 }
 
 /*
-** Reads map and piece given from stdin
+** Read_input reads information given from stdin.
 */
 
 int			read_input(t_info *i)

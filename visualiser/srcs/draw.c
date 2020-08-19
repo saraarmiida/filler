@@ -1,6 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: spentti <spentti@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/08/19 16:34:56 by spentti           #+#    #+#             */
+/*   Updated: 2020/08/19 19:39:38 by spentti          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/visualiser.h"
 
-static void		draw_background(t_env *p)
+/*
+** Draw_background sets the whole background to grey color.
+*/
+
+void			draw_background(t_env *p)
 {
 	int		i;
 
@@ -14,6 +30,11 @@ static void		draw_background(t_env *p)
 		i += 4;
 	}
 }
+
+/*
+** Tug_of_war creates a block where you can see in real time which player
+** is winning.
+*/
 
 static void		tug_of_war(t_env *p)
 {
@@ -34,6 +55,11 @@ static void		tug_of_war(t_env *p)
 	p->size.x = 1;
 	draw_rectangle(WIDTH / 2, 120, p);
 }
+
+/*
+** Based on the saved map, draw_map draws either a black square if
+** spot is empty, or a colored square in the color of the player.
+*/
 
 static void		draw_map(t_env *p)
 {

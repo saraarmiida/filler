@@ -1,8 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   trim_piece.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: spentti <spentti@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/08/19 16:29:20 by spentti           #+#    #+#             */
+/*   Updated: 2020/08/19 16:31:35 by spentti          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/filler.h"
 
 /*
-** Checks how many horizontal lines of old piece actually have a spot
-** of piece in them
+** Get_new_height checks how many horizontal lines of old piece are not empty.
 */
 
 static int	get_new_height(int piece_h, char **piece)
@@ -22,8 +33,7 @@ static int	get_new_height(int piece_h, char **piece)
 }
 
 /*
-** Checks how many vertical lines of old piece actually have a spot
-** of piece in them
+** Get_new_width checks how many vertical lines of old piece are not empty.
 */
 
 static int	get_new_width(int piece_h, int piece_w, char **piece)
@@ -52,7 +62,7 @@ static int	get_new_width(int piece_h, int piece_w, char **piece)
 }
 
 /*
-** Trims out unnecessary empty lines from piece
+** Trim_piece trims out unnecessary empty lines from piece
 */
 
 void		trim_piece(t_info *i)
