@@ -17,3 +17,6 @@ git clone https://github.com/saraarmiida/filler.git
 cd filler
 ./filler_vm -f maps/map01 -p1 ./spentti.filler -p2 players/superjeannot.filler
 ```
+## Demo
+
+![](filler_map1_demo.gif)
